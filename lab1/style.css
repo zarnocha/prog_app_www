@@ -6,7 +6,8 @@ body {
 	background-color: #b5a6a5;
 	font-size: 30px;
 	display: flex;
-	justify-content: center;
+	/*justify-content: center;*/
+	justify-content: space-around;
 	max-width: 1000px;
 	justify: center;
 	margin: auto;
