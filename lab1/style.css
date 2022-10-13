@@ -2,6 +2,20 @@ body {
 	background-color: #D7D4D4;
 }
 
+.logo {
+	justify-content: center;
+	margin: auto;
+	display: flex;
+	flex: wrap;
+}
+
+.naglowek {
+	font-size: 50px;
+}
+.dopisek {
+	font-size: 20px;
+}
+
 .tab_holder {
 	background-color: #b5a6a5;
 	font-size: 30px;
