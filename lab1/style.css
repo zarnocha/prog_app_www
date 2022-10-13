@@ -1,0 +1,23 @@
+body {
+	background-color: #D7D4D4;
+}
+
+.tab_holder {
+	background-color: #b5a6a5;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	max-width: 1000px;
+	justify: center;
+	margin: auto;
+}
+
+.tab {
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #ebe4d1;
+	text-decoration: none;
+	text-align: center;
+	width: 500px;
+	background-color: rgba(165, 146, 145, 0.9);
+}
