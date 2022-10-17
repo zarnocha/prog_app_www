@@ -58,17 +58,14 @@ img {
 	background-color: rgb(18, 161, 13);
 	font-size: 30px;
 	display: flex;
-	justify-content: center;
-	/* justify-content: space-around; */
-	/* max-width: 2000px; */
-	width: 95%;
 	margin: auto;
-	/* position: relative; */
 	align-items: center;
 	text-shadow: 0 0 5px black, 0 0 5px green;
 	box-shadow: 0px 0px 20px #ffffff;
-	overflow-x:auto;
+	overflow-x: auto;
 	margin-bottom: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .tab {
@@ -77,19 +74,29 @@ img {
 	color: #ebe4d1;
 	text-decoration: none;
 	text-align: center;
-	width: 500px;
-	top: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 2vw;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.tab:hover {
+	color:rgb(52, 216, 52);
 }
 
 .strona_glowna {
-	align-content: center;
+	/* align-content: center; */
 	margin: auto;
-	justify-content: center;
+	/* justify-content: center; */
 	max-width: 1500px;
 	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .tytul_h3 {
+	box-sizing: border-box;
 	font-family: 'Mulish', sans-serif;
 	font-size: 30px;
 	text-align: center;
@@ -99,12 +106,11 @@ img {
 	margin-top: 1%;
 	margin-left: auto;
 	margin-right: auto;
-	/* text-shadow: 0 0 2px black, 0 0 5px green; */
 	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 				0px 4px 3px rgba(0,0,0,0.4),
 				 0px 8px 13px rgba(0,0,0,0.1),
 				 0px 18px 23px rgba(0,0,0,0.1);
-	background-color: rgba(0,0,0,0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 	max-width: 500px;
 }
 
@@ -112,5 +118,104 @@ img {
 	color: white;
 	text-align: justify;
 	text-shadow: black 0px 0px 10px;
-	background-color: rgba(41, 207, 61, 0.5);
+	background-color: rgba(41, 207, 61, 0.3);
+	box-shadow: 0 0 100px green;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	max-width:90%;
+	padding: 0;
+}
+
+.obraz_przedmiotu {
+	float: left;
+	width: 90px;
+	height: 120px;
+}
+
+.opis_przedmiotu {
+	box-sizing: border-box;
+	color: white;
+	width: 95%;
+	text-align: justify;
+	text-shadow: black 0px 0px 10px;
+	background-color: rgba(41, 207, 61, 0.3);
+	box-shadow: 0 0 100px green;
+	align-items: center;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 3.5%;
+}
+
+.formularz_kontaktowy {
+	background-color: rgba(41, 207, 61, 0.3);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 1500px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.label_kontakt {
+	margin-top: 3%;
+	font-family: 'Mulish', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 1%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	background-color: rgba(255, 255, 255, 0.1);
+	max-width: 500px;
+}
+
+#input_imie_i_nazwisko {
+	font-family: 'Mulish', sans-serif;
+	/* width: 15%; */
+	width: 14vw;
+	padding-bottom: 1%;
+	font-size: 1vw;
+	text-align: center;
+	
+}
+
+#input_imie_i_nazwisko::placeholder {
+	text-align: center;
+}
+
+#input_wiadomosc {
+	font-family: 'Mulish', sans-serif;
+	padding-bottom: 10%;
+	font-size: 1.7vmax;
+	word-wrap: break-word;
+	min-width: 245px;
+	min-height: 100px;
+	max-width: 1000px;
+	width: 16vw;
+}
+
+#input_wiadomosc::placeholder {
+	text-align: center;
+}
+
+#button_przeslij {
+	font-family: 'Mulish', sans-serif;
+	text-align: center;
+	font-size: 1.5vmax;
+	margin-bottom: 4%;
+	width: 8vw;
 }
