@@ -293,19 +293,17 @@ body {
 	text-align: center;
 	font-size: 1.5vmax;
 	margin-bottom: 4%;
-	width: 8vw;
+	width: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 #przycisk_span_lewy {
 	padding-right: 50px;
-	/* margin-right: 50px; */
 }
 
 #przycisk_span_prawy {
 	padding-left: 50px;
-	/* margin-right: 50px; */
 }
 
 #footer {
