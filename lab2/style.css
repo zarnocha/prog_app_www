@@ -1,0 +1,313 @@
+body {
+	background: url("img_res/football_field.png") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.logo {
+	justify-content: center;
+	margin: auto;
+	display: flex;
+	color: whitesmoke;
+	text-shadow: 0 0 5px black, 0 0 5px green;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	height: fit-content;
+}
+
+.logo:hover {
+	cursor: pointer;
+}
+
+.naglowek {
+	font-size: 70px;
+	margin: auto;
+	padding: 0%;
+	float: left;
+	margin-bottom: 0;
+	
+}
+
+#football_o {
+	width: 40px;
+	background: transparent;
+}
+
+.dopisek {
+	height: fit-content;
+	margin-top: 0;
+	display: inline-block;
+	top:0;
+	font-size: 30px;
+	vertical-align: top;
+	margin: auto;
+	margin-left: 50%;
+	padding: 2%;
+	padding-top: 0;
+	padding-bottom: 1%;
+}
+
+.tab_holder {
+	background-color: rgb(18, 161, 13);
+	font-size: 30px;
+	display: flex;
+	margin: auto;
+	align-items: center;
+	justify-content: center;
+	text-shadow: 0 0 5px black, 0 0 5px green;
+	box-shadow: 0px 0px 20px #ffffff;
+	overflow-x: auto;
+	margin-bottom: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.tab {
+	padding-left: 50px;
+	padding-right: 50px;
+	color: #ebe4d1;
+	text-decoration: none;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 2vw;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.tab:hover {
+	color:rgb(52, 216, 52);
+}
+
+.strona_glowna {
+	margin: auto;
+	max-width: 1500px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tytul_h3 {
+	box-sizing: border-box;
+	font-family: 'Mulish', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	margin: 0;
+	margin-top: 1%;
+	margin-left: auto;
+	margin-right: auto;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	background-color: rgba(255, 255, 255, 0.2);
+	max-width: 500px;
+}
+
+.tytul_h3:hover {
+	color: black;
+	cursor: default;
+}
+
+.opis {
+	color: white;
+	text-align: justify;
+	text-shadow: black 0px 0px 10px;
+	background-color: rgba(41, 207, 61, 0.3);
+	box-shadow: 0 0 100px green;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	max-width:90%;
+	padding: 0;
+}
+
+.opis:hover {
+	color:black;
+	cursor: default;
+}
+
+.obraz_przedmiotu {
+	float: left;
+	width: 90px;
+	height: 120px;
+}
+
+.opis_przedmiotu {
+	box-sizing: border-box;
+	color: white;
+	width: 95%;
+	text-align: justify;
+	text-shadow: black 0px 0px 10px;
+	background-color: rgba(41, 207, 61, 0.3);
+	box-shadow: 0 0 100px green;
+	align-items: center;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 3.5%;
+}
+
+.opis_przedmiotu:hover {
+	color: black;
+	cursor: default;
+}
+
+.formularz_kontaktowy {
+	background-color: rgba(41, 207, 61, 0.3);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 1500px;
+	font-size: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.label_kontakt {
+	margin-top: 3%;
+	font-family: 'Mulish', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 1%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	background-color: rgba(255, 255, 255, 0.1);
+	max-width: 500px;
+}
+
+#input_imie_i_nazwisko {
+	font-family: 'Mulish', sans-serif;
+	width: 14vw;
+	padding-bottom: 1%;
+	font-size: 1vw;
+	text-align: center;
+	
+}
+
+#input_imie_i_nazwisko::placeholder {
+	text-align: center;
+}
+
+#input_wiadomosc {
+	font-family: 'Mulish', sans-serif;
+	padding-bottom: 10%;
+	font-size: 1.7vmax;
+	word-wrap: break-word;
+	min-width: 245px;
+	min-height: 100px;
+	max-width: 1000px;
+	width: 16vw;
+}
+
+#input_wiadomosc::placeholder {
+	text-align: center;
+}
+
+#button_przeslij {
+	font-family: 'Mulish', sans-serif;
+	text-align: center;
+	font-size: 1.5vmax;
+	margin-bottom: 4%;
+	width: 8vw;
+}
+
+#button_przeslij:hover {
+	cursor: pointer;
+}
+
+#wyczysc {
+	font-family: 'Mulish', sans-serif;
+	text-align: center;
+	font-size: 1.5vmax;
+	margin-bottom: 4%;
+	width: 8vw;
+}
+
+#wyczysc:hover {
+	cursor: pointer;
+}
+
+.czas {
+	color: white;
+	text-shadow: 0 0 5px black, 0 0 5px green;
+	background-color: rgba(255, 255, 255, 0.2);
+	max-width: fit-content + 10px;
+	font-size: 40px;
+	display: flex;
+	margin: auto;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+#zegarek:hover {
+	cursor: pointer;
+}
+
+#data:hover { 
+	cursor: pointer;
+}
+
+.przyciski {
+	display: flex;
+	font-family: 'Mulish', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2%;
+	margin-bottom: 1%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+	background-color: rgba(255, 255, 255, 0.1);
+	justify-content: space-evenly;
+}
+
+#przycisk {
+	display: block;
+	font-family: 'Mulish', sans-serif;
+	text-align: center;
+	font-size: 1.5vmax;
+	margin-bottom: 4%;
+	width: 8vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#przycisk_span_lewy {
+	padding-right: 50px;
+	/* margin-right: 50px; */
+}
+
+#przycisk_span_prawy {
+	padding-left: 50px;
+	/* margin-right: 50px; */
+}
+
+#footer {
+	cursor: pointer;
+}
