@@ -1,0 +1,8 @@
+Podstrony można poprzerzucać do oddzielnego katalogu.
+Pliki JS też.
+W głównym folderze może pozostać index.html i .css.
+
+Linki:
+• https://www.w3schools.com/jquery/jquery_get_started.asp
+• https://www.tutorialspoint.com/How-to-link-jQuery-in-HTML-page
+• https://stackoverflow.com/questions/6550880/change-image-dimensions-with-jquery
