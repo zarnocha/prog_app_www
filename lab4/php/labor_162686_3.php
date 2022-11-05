@@ -49,7 +49,7 @@
 <?php  
     // $wiek = 20;
     // $plec = 'kobieta';
-    
+
     echo '<br />Użycie warunku if/ else/ elseif:<br /><br />';
     if ($wiek < 18) {
         echo '> spełniony warunek <i>if ($wiek < 18)</i>:<br />';
@@ -114,10 +114,12 @@
 <?php
     echo '<b>●Typy zmiennych $_GET, $_POST, $_SESSION:</b><br /><br />';
     
+    echo 'Zmienna <i>$_GET</i><br /><br />';
     $get_nrIndeksu = $_GET["nrIndeksu"];
     
     if (empty($get_nrIndeksu)) {
-        echo 'Kliknij tutaj aby otrzymać przykładowy nr indeksu: ' . "<a href='?nrIndeksu=000000'>przykładowy nr indeksu</a>" . '<br /><br />';
+        echo "Wprowadź swój nr indeksu dopisując na końcu adresu strony zaraz po .php '?nrIndeksu=123456',<br />"; 
+        echo 'bądź kliknij tutaj aby otrzymać przykładowy nr indeksu: ' . "<a href='?nrIndeksu=123456'>przykładowy nr indeksu</a>" . '<br /><br />';
     } 
     else echo 'Twój nr indeksu to: ' . $get_nrIndeksu . ' (Wiemy to ze zmiennej <i>$_GET["nrIndeksu"]</i>)<br /><br />';
 ?>
@@ -125,6 +127,8 @@
 
 <!-- Zadanie 2; podpunkt d) - $_POST -->
 <?php
+    echo '<br />Zmienna <i>$_POST</i><br /><br />';
+
     if (empty($_POST['imie_POST'])) {
         ?>
             <form method="POST">
@@ -142,7 +146,7 @@
 
 <!-- Zadanie 2; podpunkt d) - $_SESSION -->
 <?php session_start();
-    
+    echo '<br />Zmienna <i>$_SESSION</i><br /><br />';
     $_SESSION['liczbaWejscNaStrone'] = $_SESSION['liczbaWejscNaStrone'] + 1;
     echo 'Liczba Twoich wejść na tę stronę: ' . $_SESSION['liczbaWejscNaStrone'] . ' (Wiemy to ze zmiennej <i>$_SESSION["liczbaWejscNaStrone"]</i>)<br />';
 
