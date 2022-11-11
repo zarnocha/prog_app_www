@@ -1,0 +1,26 @@
+<form name="form_kontaktowy" action="mailto:162686@student.uwm.edu.pl" method="POST"
+	onload="wyczysc_inputy(form_kontaktowy)">
+	<div class="formularz_kontaktowy">
+
+		<label class="label_kontakt" for="input_imie_i_nazwisko">Imię i nazwisko:</label>
+		<input id="input_imie_i_nazwisko" type="text" placeholder="Wprowadź dane">
+
+		<label class="label_kontakt" for="input_wiadomosc">Wiadomość:</label>
+		<textarea id="input_wiadomosc" placeholder="Wprowadź wiadomość"></textarea>
+
+		<div class="przyciski">
+			<span id="przycisk_span_lewy">
+				<label class="przycisk_label_kontakt" for="button_przeslij">Prześlij wiadomość:</label>
+				<button id="przycisk" type="submit">Prześlij</button>
+			</span>
+
+			<span id="przycisk_span_prawy">
+				<label class="przycisk_label_kontakt" for="wyczysc">Wyczyść pola:</label>
+				<button id="przycisk" type="button" onclick="wyczysc_inputy(form_kontaktowy)">Wyczyść</button>
+			</span>
+		</div>
+
+		<label id="footer" style="color:white" onclick="changeBackground()"> <i> <u>Wiadomość zostanie do mnie
+					dostarczona mailem</u> </i> </label>
+	</div>
+</form>
