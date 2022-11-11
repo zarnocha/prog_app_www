@@ -4,3 +4,4 @@ Programowanie aplikacji WWW<br>Artur Żarnoch<br>Grupa 3<br>
 [lab2](https://zarnocha.github.io/lab2/ "lab 2")<br>
 [lab3](https://zarnocha.github.io/lab3/ "lab 3")<br>
 [lab4](https://zarnocha.github.io/lab4/ "lab 4")<br>
+[lab5](https://zarnocha.github.io/lab5/ "lab 5")<br>
