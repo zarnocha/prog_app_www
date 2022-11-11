@@ -31,6 +31,7 @@
 
     $plik = require_once('zmienne.php');
     echo "<br />Użycie require_once('<i>zmienne.php</i>'): " . $plik . '<br /><br /><br />';
+    // Jako, że plik zmienne.php zaimportowaliśmy poleceniem include, to require_once go ponownie nie zaimportuje. Jeżeli jednak by ten plik nie istniał, to wystąpi 'fatal error' i program przestaje działać. Require_once zwraca 1 (true), jeśli dany plik został zaimportowany.
 ?>
 
 
@@ -38,18 +39,17 @@
 <!-- Zadanie 2; podpunkt b) -->
 <?php
     echo '<b>● Warunki if, else, elseif, switch:</b><br /><br />';
-    echo "Zmienna <i>\$wiek</i> od której zależy działanie warunku if.<br />
-         Zdefiniowana jest ona w pliku <i>zmienne.php</i>, ale równie dobrze można ją edytować tutaj, przykład w 50 linijce.<br />
+    echo "Zmienna <i>\$wiek</i> (od której zależy działanie warunku if) zdefiniowana jest w pliku <i>zmienne.php</i>, ale równie dobrze można ją edytować tutaj, przykład w 50/51 linijce.<br />
          Jest ona po to, aby swobodnie modyfikować jej wartość w kodzie i sprawdzać działanie warunku.<br />
-         To samo odwołuje się do zmiennej <i>\$plec</i> w przypadku użycia switcha<br /><br />
+         To samo odwołuje się do zmiennej <i>\$plec</i> w przypadku użycia switcha (przykłady zmiany w liniach 68/69).<br /><br />
          <i>\$wiek</i>: $wiek<br />
          <i>\$plec</i>: $plec<br />";
 ?>
 <hr id="kreskowana">
 <?php  
+    // $wiek = 17;
     // $wiek = 20;
-    // $plec = 'kobieta';
-
+    
     echo '<br />Użycie warunku if/ else/ elseif:<br /><br />';
     if ($wiek < 18) {
         echo '> spełniony warunek <i>if ($wiek < 18)</i>:<br />';
@@ -63,7 +63,11 @@
         echo '> spełniony warunek <i>else</i>: <br />';
         echo 'Jesteś osobą pełnoletnią.<br />';
     }
-    
+
+
+    // $plec = 'kobieta';
+    // $plec = 'error';
+
     echo '<br />Użycie switcha:<br />';
     switch ($plec) {
         case 'mężczyzna':
@@ -75,8 +79,9 @@
             echo "> <i>case 'kobieta'</i>:<br />";
             echo 'Pani ' .$imie. ' ' .$nazwisko. '<br />';
             break;
-                
+            
         default:
+            echo "> <i>default case</i>:<br />";
             echo $imie . ' ' .$nazwisko. '<br />';
             break;      
     }
@@ -124,6 +129,7 @@
     else echo 'Twój nr indeksu to: ' . $get_nrIndeksu . ' (Wiemy to ze zmiennej <i>$_GET["nrIndeksu"]</i>)<br /><br />';
 ?>
 
+<hr id="kreskowana">
 
 <!-- Zadanie 2; podpunkt d) - $_POST -->
 <?php
@@ -140,15 +146,16 @@
     else {
         echo 'Twoje imię to: ' . $_POST['imie_POST'] . ' (Wiemy to ze zmiennej <i>$_POST["imie_POST"]</i>)<br /><br />';
     }
-
+    echo("<br />");
 ?>
 
+<hr id="kreskowana">
 
 <!-- Zadanie 2; podpunkt d) - $_SESSION -->
 <?php session_start();
     echo '<br />Zmienna <i>$_SESSION</i><br /><br />';
     $_SESSION['liczbaWejscNaStrone'] = $_SESSION['liczbaWejscNaStrone'] + 1;
-    echo 'Liczba Twoich wejść na tę stronę: ' . $_SESSION['liczbaWejscNaStrone'] . ' (Wiemy to ze zmiennej <i>$_SESSION["liczbaWejscNaStrone"]</i>)<br />';
+    echo 'Liczba Twoich wejść na tę stronę w trakcie jednej sesji: ' . $_SESSION['liczbaWejscNaStrone'] . ' (Wiemy to ze zmiennej <i>$_SESSION["liczbaWejscNaStrone"]</i>)<br />';
 
     echo '<br /><br />';
 ?>
