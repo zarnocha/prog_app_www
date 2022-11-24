@@ -1,25 +1,9 @@
+<!-- version: 1.5 -->
+
 <?php
-$nr_indeksu = '162686';
-$nrGrupy = '3';
-
-$tablica_podstron = ['' => 'html/glowna.html', 'pilki' => 'html/pilki.html', 'rekawice' => 'html/rekawice.html', 'stroje' => 'html/stroje.html', 'obuwie' => 'html/obuwie.html', 'kontakt' => 'html/kontakt.html', 'filmy' => 'html/filmy.html'];
- 
- if($_GET['idp'] == '') $strona = 'html/glowna.html';
- if($_GET['idp'] == 'pilki') $strona = 'html/pilki.html';
- if($_GET['idp'] == 'rekawice') $strona = 'html/rekawice.html';
- if($_GET['idp'] == 'stroje') $strona = 'html/stroje.html';
- if($_GET['idp'] == 'obuwie') $strona = 'html/obuwie.html';
- if($_GET['idp'] == 'kontakt') $strona = 'html/kontakt.html';
- if($_GET['idp'] == 'filmy') $strona = 'html/filmy.html';
- 
-// Wymyśliłem takie zabezpieczenie, że jeżeli dana podstrona nie będzie istniała, to zostanie wyświetlony tylko szablon strony głównej. 
-
- foreach ($tablica_podstron as $nazwa => $podstrona) {
-	if (!file_exists($podstrona)) {
-		if ($_GET['idp'] == $nazwa) $strona= '';
-	}
- } 
- 
+	include 'showpage.php';
+	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+	$strona = pokazPodstrone($_GET['idp']);
 ?>
 
 <!DOCTYPE html>
@@ -66,14 +50,14 @@ $tablica_podstron = ['' => 'html/glowna.html', 'pilki' => 'html/pilki.html', 're
 
 
 	<?php
-		error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-		include($strona);
+		echo $strona;
 		$nr_indeksu = "162686";
 		$nrGrupy = "3";
 		echo "</br></br><div class='tytul_h3' style='max-width:100%'>Autor: Artur Żarnoch, nr indeksu: " .$nr_indeksu. ', grupa: ' .$nrGrupy. '</div><br /><br />';
 	?>
 
 </body>
+
 <script src="js/powiekszanie_obrazu_klikniecie.js" type="text/javascript"></script>
 <script src="js/zwiekszenie_obrazu_klikniecie.js" type="text/javascript"></script>
 <script src="js/powiekszanie_obrazu_najechanie.js" type="text/javascript"></script>

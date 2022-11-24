@@ -1,9 +1,9 @@
 body {
 	background: url("../img/football_field.png") no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
+	background-size: cover;
+	/* height: 100%; */
+	/* width: 100%; */
+	overflow-x: hidden;
 }
 
 .logo {
@@ -31,16 +31,18 @@ body {
 }
 
 .naglowek {
-	font-size: 70px;
+	/* font-size: 70px; */
+	font-size: 4vw;
 	margin: auto;
 	padding: 0%;
 	float: left;
 	margin-bottom: 0;
-	
+
 }
 
 #football_o {
-	width: 40px;
+	/* width: 40px; */
+	width: 2vw;
 	background: transparent;
 }
 
@@ -48,8 +50,9 @@ body {
 	height: fit-content;
 	margin-top: 0;
 	display: inline-block;
-	top:0;
+	top: 0;
 	font-size: 30px;
+	font-size: 2vw;
 	vertical-align: top;
 	margin: auto;
 	margin-left: 50%;
@@ -60,20 +63,22 @@ body {
 
 .tab_holder {
 	background-color: rgb(18, 161, 13);
-	font-size: 30px;
 	display: flex;
 	margin: auto;
+	margin-right: 20px;
 	align-items: center;
-	justify-content: center;
+	/* justify-content: center; */
 	text-shadow: 0 0 5px black, 0 0 5px green;
 	box-shadow: 0px 0px 20px #ffffff;
 	overflow-x: auto;
 	margin-bottom: 3%;
-	margin-left: 0%;
-	margin-right: 1rem;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .tab {
+	flex-basis: 0;
+	flex-grow: 1;
 	padding-left: 50px;
 	padding-right: 50px;
 	color: #ebe4d1;
@@ -87,12 +92,12 @@ body {
 }
 
 .tab:hover {
-	color:rgb(52, 216, 52);
+	color: rgb(52, 216, 52);
 }
 
 .strona_glowna {
 	margin: auto;
-	max-width: 1500px;
+	/* max-width: 1500px; */
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: auto;
@@ -101,19 +106,22 @@ body {
 .tytul_h3 {
 	box-sizing: border-box;
 	font-family: 'Mulish', sans-serif;
-	font-size: 30px;
+	/* font-size: 30px; */
+	font-size: 2vw;
 	text-align: center;
 	color: white;
 	margin: 0;
 	margin-top: 1%;
 	margin-left: auto;
 	margin-right: auto;
-	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-				0px 4px 3px rgba(0,0,0,0.4),
-				 0px 8px 13px rgba(0,0,0,0.1),
-				 0px 18px 23px rgba(0,0,0,0.1);
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 8px 13px rgba(0, 0, 0, 0.1),
+		0px 18px 23px rgba(0, 0, 0, 0.1);
 	background-color: rgba(255, 255, 255, 0.2);
-	max-width: 500px;
+	/* max-width: 500px; */
+	min-width: 40%;
+	max-width: 60%;
 }
 
 .tytul_h3:hover {
@@ -122,6 +130,7 @@ body {
 }
 
 .opis {
+	font-size: 1vw;
 	color: white;
 	text-align: justify;
 	text-shadow: black 0px 0px 10px;
@@ -134,19 +143,25 @@ body {
 	justify-content: space-around;
 	margin-left: auto;
 	margin-right: auto;
-	max-width:90%;
-	padding: 0;
+	min-width: 60%;
+	max-width: 70%;
+	padding: 1vw;
+	font-size: 1vw;
 }
 
 .opis:hover {
-	color:black;
+	color: black;
 	cursor: default;
+}
+
+.przedmiot {
+	margin-bottom: 7%;
 }
 
 .obraz_przedmiotu {
 	float: left;
-	width: 90px;
-	height: 120px;
+	width: 9vw;
+	height: 10vw;
 	user-select: none;
 }
 
@@ -154,6 +169,7 @@ body {
 	box-sizing: border-box;
 	color: white;
 	width: 95%;
+	font-size: 1vw;
 	text-align: justify;
 	text-shadow: black 0px 0px 10px;
 	background-color: rgba(41, 207, 61, 0.3);
@@ -164,6 +180,7 @@ body {
 	margin-right: auto;
 	margin-top: 2%;
 	margin-bottom: 3.5%;
+	padding: 10px;
 }
 
 .opis_przedmiotu:hover {
@@ -177,7 +194,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	max-width: 1500px;
+	/* max-width: 1500px; */
 	font-size: 20px;
 	margin-left: auto;
 	margin-right: auto;
@@ -186,19 +203,20 @@ body {
 .label_kontakt {
 	margin-top: 3%;
 	font-family: 'Mulish', sans-serif;
-	font-size: 30px;
+	font-size: 1.5vw;
 	text-align: center;
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2%;
 	margin-bottom: 1%;
-	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-				0px 4px 3px rgba(0,0,0,0.4),
-				 0px 8px 13px rgba(0,0,0,0.1),
-				 0px 18px 23px rgba(0,0,0,0.1);
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 8px 13px rgba(0, 0, 0, 0.1),
+		0px 18px 23px rgba(0, 0, 0, 0.1);
 	background-color: rgba(255, 255, 255, 0.1);
-	max-width: 500px;
+	/* max-width: 500px; */
+	padding: 0.5vw;
 }
 
 #input_imie_i_nazwisko {
@@ -207,7 +225,7 @@ body {
 	padding-bottom: 1%;
 	font-size: 1vw;
 	text-align: center;
-	
+
 }
 
 #input_imie_i_nazwisko::placeholder {
@@ -217,11 +235,11 @@ body {
 #input_wiadomosc {
 	font-family: 'Mulish', sans-serif;
 	padding-bottom: 10%;
-	font-size: 1.7vmax;
+	font-size: 1.5vw;
 	word-wrap: break-word;
-	min-width: 245px;
+	/* min-width: 245px;
 	min-height: 100px;
-	max-width: 1000px;
+	max-width: 1000px; */
 	width: 16vw;
 }
 
@@ -257,39 +275,40 @@ body {
 	color: white;
 	text-shadow: 0 0 5px black, 0 0 5px green;
 	background-color: rgba(255, 255, 255, 0.2);
-	font-size: 40px;
+	/* font-size: 40px; */
+	font-size: 2vw;
 	display: flex;
 	margin: auto;
 	align-items: center;
 	align-content: center;
 	justify-content: center;
 	flex-direction: column;
-	margin-bottom: 20px;
-    margin-right: 1rem;
+	margin-bottom: 1.5vw;
+	margin-right: auto;
 }
 
 #zegarek:hover {
 	cursor: pointer;
 }
 
-#data:hover { 
+#data:hover {
 	cursor: pointer;
 }
 
 .przyciski {
 	display: flex;
 	font-family: 'Mulish', sans-serif;
-	font-size: 30px;
+	font-size: 1.5vw;
 	text-align: center;
 	color: white;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 2%;
 	margin-bottom: 1%;
-	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-				0px 4px 3px rgba(0,0,0,0.4),
-				 0px 8px 13px rgba(0,0,0,0.1),
-				 0px 18px 23px rgba(0,0,0,0.1);
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 4px 3px rgba(0, 0, 0, 0.4),
+		0px 8px 13px rgba(0, 0, 0, 0.1),
+		0px 18px 23px rgba(0, 0, 0, 0.1);
 	background-color: rgba(255, 255, 255, 0.1);
 	justify-content: space-evenly;
 }
@@ -315,4 +334,5 @@ body {
 
 #footer {
 	cursor: pointer;
+	font-size: 1.5vw;
 }
