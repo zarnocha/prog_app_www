@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    echo('<script src="js/refresh.js"></script>');
     if ($_SESSION['auth'] === True) {
         function ListaPodstron() {
             require(dirname(__DIR__, 1). '/cfg.php'); 
@@ -39,9 +40,6 @@
                  <form style="display: flex; flex-direction: column; align-items: stretch;" method="post">');
 
             echo("<input type='checkbox' checked='checked' name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;'><label for='status' style='color:white;'>Aktywna </label>");
-            
-            // echo ('<label for="id">ID</label>');
-            // echo("<input type='number' name='id' id='id' disabled placeholder='id'>");
 
             echo ('<label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>');
             echo("<input type='text' name='page_title' id='page_title' placeholder='Tytuł'>");
@@ -52,7 +50,7 @@
             echo ('<label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>');
             echo("<input type='text' name='alias' id='alias' placeholder='Alias'>");
  
-            echo("<button id='edit_button' type='submit' name='save' style='margin-top:2%;'>Dodaj</button><br>");
+            echo('<button id="edit_button" onclick="refresh_diva()" type="submit" name="save" style="margin-top:2%;")>Dodaj</button><br>');
             echo("</form>
                 </div>
                 </div>");
@@ -76,12 +74,12 @@
                 // header('Location: ./admin_panel.php');
                 // header("Refresh:0; Location: ?idp=admin_panel&", true);
                 
-                header("Refresh:0; url='?idp=admin_panel'", true); 
-                header('Location: ?idp=admin_panel/');
+                // header("Refresh:0; url='?idp=admin_panel'", true); 
+                // header('Location: ?idp=admin_panel/');
                 
             }
-            header("Refresh:0; url='?idp=admin_panel'", true);
-            header('Location: ?idp=admin_panel/');
+            // header("Refresh:0; url='?idp=admin_panel'", true);
+            // header('Location: ?idp=admin_panel/');
         }
 
         if (isset($_GET['edit'])) {
@@ -120,7 +118,7 @@
                 echo("<input type='text' name='page_title' id='page_title' placeholder='Tytuł' value=" . $row['page_title'] . ">");
 
                 echo ('<label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label>');
-                echo("<textarea type='text' name='page_content' id='page_content' placeholder='Treść'>" . $page_content . "</textarea>"); // uzyc htmlspecialchars zeby nie wyswietlalo przyciskow (mozna wstawic do bazy wersję zmieniona tym HSC)
+                echo("<textarea type='text' name='page_content' id='page_content' placeholder='Treść'>" . $page_content . "</textarea>");
                 
                 echo ('<label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>');
                 echo("<input type='text' name='alias' id='alias' placeholder='Alias' value=" . $row['alias'] . ">");
@@ -149,9 +147,9 @@
                     // header('Location: admin_panel.php');
                     // header('Location: ?idp=admin_panel');
                     // header("Refresh:0; Location: ?idp=admin_panel");
-                    header("Refresh:0; url='?idp=admin_panel'"); 
+                    // header("Refresh:0; url='?idp=admin_panel'"); 
                 }
-                header("Refresh:0; url='?idp=admin_panel'"); 
+                // header("Refresh:0; url='?idp=admin_panel'"); 
             }
         }
 
@@ -163,7 +161,7 @@
             header('Location: ?idp=admin_panel');
         }
                     
-        header("Refresh:0; url=?idp=admin_panel"); 
+        // header("Refresh:0; url=?idp=admin_panel"); 
     }
 
     else {

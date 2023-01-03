@@ -20,6 +20,7 @@ var oryginalna_wysokosc = parseFloat($(document.getElementsByClassName("logo")).
             naglowek_size += 5;
         }
         else if (naglowek_size >= 145) {
+            console.log("test2")
             $(document.getElementsByClassName("naglowek")).css("fontSize", "-=" + 75);
             $(document.getElementsByClassName("dopisek")).css("fontSize", "-=" + 75);
             $(document.getElementById("football_o")).css("width", "-=" + 75);
