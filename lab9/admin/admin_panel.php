@@ -3,6 +3,11 @@
     session_start();
     echo('<script src="js/refresh.js"></script>');
     if ($_SESSION['auth'] === True) {
+
+        // Funkcja ListaPodstron() zwraca listę zawierającą podstrony pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php, 
+        // następnie wykonuje kwerendę do bazy aby dostać z powrotem podstrony do zmiennej $result.
+        // Kolejno za pomocą polecenia echo wyświetlam div'a z podstronami.
+
         function ListaPodstron() {
             require(dirname(__DIR__, 1). '/cfg.php'); 
             $sql = "SELECT * FROM page_list LIMIT 100";
@@ -24,7 +29,6 @@
                     echo "Brak wyników";
             }
 
-            // $link->close();
         }
 
         ListaPodstron();

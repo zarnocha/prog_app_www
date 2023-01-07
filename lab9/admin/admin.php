@@ -4,6 +4,7 @@
     require(dirname(__DIR__, 1). '/cfg.php');
     session_start();
 
+    // Funkcja FormularzLogowania() wyświetla formularz logowania do panelu CMS
     function FormularzLogowania() {
         $login_form = '
             <link rel="stylesheet" href="css/admin.css">

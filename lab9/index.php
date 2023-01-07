@@ -1,4 +1,4 @@
-<!-- version: 1.7 -->
+<!-- version: 1.8 -->
 
 <?php
 	ini_set('display_errors', 1);
