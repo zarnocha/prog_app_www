@@ -1,7 +1,11 @@
 <?php
 
-    function pokazPodstrone($alias) {
-        include 'cfg.php';
+    // funkcja jako argument przyjmuje alias, który jest wyszukiwany w bazie danych
+    // jeżeli argument jest pusty, to pokazywana jest strona główna.
+    // jeżeli strony nie da się znaleźć w bazie danych, bądź jej status == 0: pokazywany jest napis "Nie znaleziono strony".
+
+    function pokazPodstrone($alias) {   
+        require 'cfg.php';
 
         if (empty($alias)) 
             $alias = 'glowna';

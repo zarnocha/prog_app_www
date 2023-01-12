@@ -6,31 +6,31 @@
 	session_start();
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); 
 
-	if ($_GET['idp'] == 'kontakt') {
+	if ($_GET['idp'] == 'kontakt') {	// jeżeli w zmiennej idp będzie "kontakt", to wyświetlamy podstronę "kontakt" z pliku contact.php
 		require('contact.php');
 		session_start();
 		$strona = PokazKontakt();
 	} 
 
-	elseif ($_GET['idp'] == 'admin') {
+	elseif ($_GET['idp'] == 'admin') {	// jeżeli w zmiennej idp będzie "admin", to wyświetlamy podstronę "kontakt" z pliku contact.php
 		require_once('admin/admin.php');
 		$strona = FormularzLogowania();
 	}
 
-	elseif ($_GET['idp'] == 'admin_panel') {
+	elseif ($_GET['idp'] == 'admin_panel') {	// jeśli w zmiennej idp będzie "admin_panel" to na razie nie wykonujemy żadnego działania
 		;
 	}
 	
-	elseif ($_GET['idp'] == 'logout') {
+	elseif ($_GET['idp'] == 'logout') {	// jeżeli w zmiennej idp będzie "logout" to następuje użycie kodu z logout.php, czyli usuwanie sesji i przejście na stronę główną.
 		require('admin/logout.php');
 	}
 
-	elseif ($_GET['idp'] == 'przypomnij_haslo') {
+	elseif ($_GET['idp'] == 'przypomnij_haslo') {	// jeżeli w zmiennej idp będzie "przypomnij_haslo" to używany jest plik contact.php a wyświetlaną stroną zostaje informacja o przypomnieniu hasła
 		require('contact.php');
 		$strona = PokazPrzypomnijHaslo();
 	}
 
-	else {
+	else {	// w kazdym innym przypadku (jeżeli dana podstrona nie może być znaleziona w bazie) wyświetlona będzie strona główna
 		$strona = pokazPodstrone($_GET['idp']);
 	}
 	
@@ -72,17 +72,17 @@
 			<?php
 				require(__DIR__. '/cfg.php');
 
-				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {
-					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {
-						if ($_GET['idp'] == 'admin_panel') {
-							$czyZalogowany = '<a href="?idp=logout">Wyloguj się';
+				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
+					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {	// jeżeli zgadzają się one z danymi administratora
+						if ($_GET['idp'] == 'admin_panel') {	// jeżeli jesteśmy w admin panelu
+							$czyZalogowany = '<a href="?idp=logout">Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
 						}
 						else
-							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a href="?idp=logout">Wyloguj się';
+							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a href="?idp=logout">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
 					}
 				}
 				else
-					$czyZalogowany = '<a href="?idp=admin">Zaloguj się';
+					$czyZalogowany = '<a href="?idp=admin">Zaloguj się'; // jeżeli użytkownik nie jest zalogowany to dajemu mu możliwość zalogowania się przez przekierowanie do podstrony z formularzem logowania
 				echo ($czyZalogowany . '</a>');
 			?>
 		</div>

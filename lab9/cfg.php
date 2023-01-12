@@ -1,5 +1,7 @@
 <?php
 
+    // plik konfiguracyjny zawierający zmienne odpowiadające za połączenie z bazą danych.
+    
     $dbhost = 'localhost';
     $dbuser = 'root';
     $dbpass = '';
