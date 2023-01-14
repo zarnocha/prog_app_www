@@ -4,6 +4,7 @@
 	ini_set('display_errors', 1);
 	include 'showpage.php';
 	session_start();
+
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); 
 
 	if ($_GET['idp'] == 'kontakt') {	// jeżeli w zmiennej idp będzie "kontakt", to wyświetlamy podstronę "kontakt" z pliku contact.php
@@ -81,10 +82,10 @@
 				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
 					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {	// jeżeli zgadzają się one z danymi administratora
 						if ($_GET['idp'] == 'admin_panel') {	// jeżeli jesteśmy w admin panelu
-							$czyZalogowany = '<a href="?idp=wyloguj">Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
+							$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
 						}
 						else
-							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
+							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
 					}
 				}
 				else

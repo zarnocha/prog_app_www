@@ -31,7 +31,7 @@
         $_SESSION['password'] = $_POST['login_pass'];
     }
 
-    if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
+    if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' - czyli formularz został zatwierdzony - i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
                                     // co oznacza, że użytkownik jest zalogowany.
         if($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {
             $_SESSION['auth'] = true;
@@ -40,8 +40,8 @@
         }
     }
 
-    if(isset($_SESSION['login'])) {
-        if (!($_SESSION['login'] === $login && $_SESSION['password'] === $pass)) {  // jeżeli login bądź hasło jest nieprawidłowe - wykonujemy ten kod (zmienna sesji 'auth' ustawiana jest na False - użytkownik niezalogowany).
+    if(isset($_SESSION['login'])) { // jeżeli formularz został zatwierdzony
+        if (!($_SESSION['login'] === $login && $_SESSION['password'] === $pass)) {  // jeżeli login bądź hasło jest nieprawidłowe - wykonujemy ten kod (zmienna sesji 'auth' ustawiana jest na False - użytkownik niezalogowany + usuwamy przypisane dane).
             unset($_SESSION['login']);
             unset($_SESSION['password']);
             $_SESSION['auth'] = false;
@@ -50,7 +50,6 @@
     }
 
     function Wyloguj() {    // funkcja służąca do usuwania sesji - w tym usunięciu danych logowania - i powrotu do strony głównej
-        session_start();
         session_destroy();
         header('Location: ?idp=');
     }
