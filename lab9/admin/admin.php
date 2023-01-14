@@ -34,7 +34,8 @@
     if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
                                     // co oznacza, że użytkownik jest zalogowany.
         if($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {
-            $_SESSION['auth'] = True;
+            $_SESSION['auth'] = true;
+            $_SESSION['success'] = false;
             header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=admin_panel');  // przeniesienie użytkownika z panelu logowania do admin panelu
         }
     }
@@ -43,10 +44,14 @@
         if (!($_SESSION['login'] === $login && $_SESSION['password'] === $pass)) {  // jeżeli login bądź hasło jest nieprawidłowe - wykonujemy ten kod (zmienna sesji 'auth' ustawiana jest na False - użytkownik niezalogowany).
             unset($_SESSION['login']);
             unset($_SESSION['password']);
-            $_SESSION['auth'] = False;
+            $_SESSION['auth'] = false;
             header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=admin_panel');
         }
     }
 
-
+    function Wyloguj() {    // funkcja służąca do usuwania sesji - w tym usunięciu danych logowania - i powrotu do strony głównej
+        session_start();
+        session_destroy();
+        header('Location: ?idp=');
+    }
 ?>

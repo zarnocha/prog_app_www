@@ -8,7 +8,7 @@
     require('PHPMailer/PHPMailer.php');
     require('PHPMailer/SMTP.php');
 
-    function PokazKontakt() {
+    function PokazKontakt() {   // funkcja zwracająca formularz kontaktowy
         return ('
         <script src="js/kolorujtlo.js"></script>
         <link rel="stylesheet" href="css/form.css">
@@ -33,7 +33,7 @@
     }
     
 
-    function WyslijMailKontakt($nadawca, $nazwa_nadawcy, $odbiorca, $temat, $tresc) {
+    function WyslijMailKontakt($nadawca, $nazwa_nadawcy, $odbiorca, $temat, $tresc) {   // funkcja która wysyła maila od danego nadawcy do danego odbiorcy z danymi tematem i treścią 
         $mail = new PHPMailer(true);
         $mail->isSMTP();
 
@@ -59,16 +59,16 @@
         $mail->send();
     }
 
-    if (isset($_POST["send"])) {
+    if (isset($_POST["send"])) {    // jeżeli w formularzu kontaktowym zatwierdzimy wysłanie maila - wykona się ta funkcja - wyśle maila ze strony na progappwwwmailer@gmail.com
         WyslijMailKontakt($_POST["email"], $_POST["name"], 'progappwwwmailer@gmail.com', $_POST["subject"], $_POST["message"]);
         header('Location: ./index.php?idp=kontakt');
     }
 
-    function PrzypomnijHaslo() {
+    function PrzypomnijHaslo() {    // funkcja ta w domyśle ma wysyłać maila z hasłem do osoby, która prosi o jego przypomnienie
         WyslijMailKontakt('progappwwwmailer@gmail.com', 'Przypomnienie hasla', 'progappwwwmailer@gmail.com', 'Przypomnienie hasla', '<center>Oto Twoje dane:<br/>Login: admin<br/>Haslo: admin');
     }
 
-    function PokazPrzypomnijHaslo(){
+    function PokazPrzypomnijHaslo(){    // funkcja wysyłająca mail z hasłem poprzez działanie f-cji PrzypomnijHaslo() i zwracająca podstronę z wiadomością o powodzeniu akcji.
         if (($_GET['idp'] == 'przypomnij_haslo')) {
             
             PrzypomnijHaslo();

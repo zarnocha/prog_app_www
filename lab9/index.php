@@ -30,6 +30,12 @@
 		$strona = PokazPrzypomnijHaslo();
 	}
 
+	elseif ($_GET['idp'] == 'wyloguj') {	// jeżeli w zmiennej idp będzie "wyloguj" to używana jest funkcja Wyloguj() z pliku admin.php, użytkownik zostaje wylogowany a nastepnie wyświetlana jest strona główna.
+		require('admin/admin.php');
+		Wyloguj();
+	}
+
+
 	else {	// w kazdym innym przypadku (jeżeli dana podstrona nie może być znaleziona w bazie) wyświetlona będzie strona główna
 		$strona = pokazPodstrone($_GET['idp']);
 	}
@@ -75,10 +81,10 @@
 				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
 					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {	// jeżeli zgadzają się one z danymi administratora
 						if ($_GET['idp'] == 'admin_panel') {	// jeżeli jesteśmy w admin panelu
-							$czyZalogowany = '<a href="?idp=logout">Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
+							$czyZalogowany = '<a href="?idp=wyloguj">Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
 						}
 						else
-							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a href="?idp=logout">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
+							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
 					}
 				}
 				else
