@@ -13,26 +13,22 @@
 		$strona = PokazKontakt();
 	} 
 
-	elseif ($_GET['idp'] == 'admin') {	// jeżeli w zmiennej idp będzie "admin", to wyświetlamy podstronę "kontakt" z pliku contact.php
-		require_once('admin/admin.php');
+	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy podstronę "kontakt" z pliku contact.php
+		require_once('admin/login.php');
 		$strona = FormularzLogowania();
 	}
 
-	elseif ($_GET['idp'] == 'admin_panel') {	// jeśli w zmiennej idp będzie "admin_panel" to na razie nie wykonujemy żadnego działania
+	elseif ($_GET['idp'] == 'panel_cms') {	// jeśli w zmiennej idp będzie "panel_cms" to na razie nie wykonujemy żadnego działania
 		;
 	}
 	
-	elseif ($_GET['idp'] == 'logout') {	// jeżeli w zmiennej idp będzie "logout" to następuje użycie kodu z logout.php, czyli usuwanie sesji i przejście na stronę główną.
-		require('admin/logout.php');
-	}
-
 	elseif ($_GET['idp'] == 'przypomnij_haslo') {	// jeżeli w zmiennej idp będzie "przypomnij_haslo" to używany jest plik contact.php a wyświetlaną stroną zostaje informacja o przypomnieniu hasła
 		require('contact.php');
 		$strona = PokazPrzypomnijHaslo();
 	}
 
-	elseif ($_GET['idp'] == 'wyloguj') {	// jeżeli w zmiennej idp będzie "wyloguj" to używana jest funkcja Wyloguj() z pliku admin.php, użytkownik zostaje wylogowany a nastepnie wyświetlana jest strona główna.
-		require('admin/admin.php');
+	elseif ($_GET['idp'] == 'wyloguj') {	// jeżeli w zmiennej idp będzie "wyloguj" to używana jest funkcja Wyloguj() z pliku login.php, użytkownik zostaje wylogowany a nastepnie wyświetlana jest strona główna.
+		require('admin/login.php');
 		Wyloguj();
 	}
 
@@ -81,15 +77,15 @@
 
 				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
 					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {	// jeżeli zgadzają się one z danymi administratora
-						if ($_GET['idp'] == 'admin_panel') {	// jeżeli jesteśmy w admin panelu
+						if ($_GET['idp'] == 'panel_cms') {	// jeżeli jesteśmy w panelu cms
 							$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
 						}
 						else
-							$czyZalogowany = '<a href="?idp=admin_panel">Admin panel</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza admin panelem - dodajemy do niego przycisk
+							$czyZalogowany = '<a href="?idp=panel_cms">Panel CMS</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza panelem CMS - dodajemy do niego przycisk
 					}
 				}
 				else
-					$czyZalogowany = '<a href="?idp=admin">Zaloguj się'; // jeżeli użytkownik nie jest zalogowany to dajemu mu możliwość zalogowania się przez przekierowanie do podstrony z formularzem logowania
+					$czyZalogowany = '<a href="?idp=login">Zaloguj się'; // jeżeli użytkownik nie jest zalogowany to dajemu mu możliwość zalogowania się przez przekierowanie do podstrony z formularzem logowania
 				echo ($czyZalogowany . '</a>');
 			?>
 		</div>
@@ -117,8 +113,8 @@
 
 
 	<?php
-		if ($_GET['idp'] == 'admin_panel') 
-			require_once('admin/admin_panel.php');
+		if ($_GET['idp'] == 'panel_cms') 
+			require_once('admin/panel_cms.php');
 
 		else 
 			echo htmlspecialchars_decode($strona);

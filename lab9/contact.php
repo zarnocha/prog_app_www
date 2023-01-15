@@ -78,7 +78,7 @@
                 <div class="przypomnienie_hasla">
                     <h1 class="h1_przypomnienie">Na Twój adres e-mail zostały wysłane dane.</h1>
                     <div class="przyciski" style="display: flex; flex-direction: column; justify-content: center; text-align: center; width: fit-content;">
-                        <button id="przycisk" style="width: 100%; margin: auto; margin-bottom: 10%;"><a href="?idp=admin">Powróć do logowania</a></button>
+                        <button id="przycisk" style="width: 100%; margin: auto; margin-bottom: 10%;"><a href="?idp=login">Powróć do logowania</a></button>
                         <button id="przycisk" style="width: 100%; margin: auto; "><a href="?idp=">Powróć na stronę główną</a></button>
                     </div>
                 </div>

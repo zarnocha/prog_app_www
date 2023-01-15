@@ -13,9 +13,9 @@
             <link rel="stylesheet" href="css/admin.css">
             <div class="panel">
             <div class="logowanie">
-            <form method="post" name="LoginForm" enctype="multipart/form-data" action="admin/admin.php">
+            <form method="post" name="LoginForm" enctype="multipart/form-data" action="admin/login.php">
             <table class="logowanie" style="display:grid">
-            <h1 class="heading">Panel CMS:</h1>
+            <h1 class="heading">Panel logowania:</h1>
                 <tr><td class="labele"><label for="login_email">E-mail:</label></td><td><input id="login_email" type="text" name="login_email" class="logowanie" /></td></tr>
                 <tr><td class="labele"><label for="login_pass">Hasło:</label></td><td><input id="login_pass" type="password" name="login_pass" class="logowanie" /></td></tr>
                 <tr class="przyciski_logowanie"><td><input type="submit" name="x1_submit" class="logowanie" value="Zaloguj"></td>
@@ -36,7 +36,7 @@
         if($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {
             $_SESSION['auth'] = true;
             $_SESSION['success'] = false;
-            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=admin_panel');  // przeniesienie użytkownika z panelu logowania do admin panelu
+            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=panel_cms');  // przeniesienie użytkownika z panelu logowania do panelu CMS
         }
     }
 
@@ -45,7 +45,7 @@
             unset($_SESSION['login']);
             unset($_SESSION['password']);
             $_SESSION['auth'] = false;
-            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=admin_panel');
+            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=panel_cms');
         }
     }
 
