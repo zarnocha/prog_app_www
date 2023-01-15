@@ -33,7 +33,7 @@
 		require('admin/login.php');
 		Wyloguj();
 	}
-
+	
 
 	else {	// w kazdym innym przypadku (jeżeli dana podstrona nie może być znaleziona w bazie) wyświetlona będzie strona główna
 		$strona = pokazPodstrone($_GET['idp']);
@@ -115,8 +115,10 @@
 
 
 	<?php
-		if ($_GET['idp'] == 'panel_cms') 
+
+		if ($_GET['idp'] == 'panel_cms') {
 			require_once('admin/panel_cms.php');
+		}
 
 		else 
 			echo htmlspecialchars_decode($strona);
