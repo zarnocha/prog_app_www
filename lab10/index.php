@@ -1,6 +1,8 @@
-<!-- version: 1.8 -->
+<!-- version: 1.9 -->
 
 <?php
+	mb_internal_encoding('UTF-8');
+	mb_http_output('UTF-8');
 	ini_set('display_errors', 1);
 	include 'showpage.php';
 	session_start();

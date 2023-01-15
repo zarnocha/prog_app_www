@@ -7,7 +7,7 @@
     
     // łączenie z bazą danych przez rozszerzenie PDO, która skutecznie uniemożliwia ataki typu SQL Injection
     try{
-        $dbh = new PDO('mysql:host=localhost;dbname=moja_strona', 'root', '');
+        $dbh = new PDO('mysql:host=localhost;dbname=my_site;charset=utf8mb4', 'root', '');
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
 
