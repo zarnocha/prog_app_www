@@ -46,17 +46,76 @@
            
             if ($sth->rowCount() > 0) {
                 while ($row = $sth->fetch()) {
-                    
                     echo("
                     id: <b>" . $row["id"] . 
                     "</b><label class='kreska'> | </label> Nazwa kategorii: <b>" . $row["name"] . 
                     "</b><label class='kreska'> | </label> Kategoria matka: <b>" . $row['master'] . 
-                    "</b><label class='kreska'> | </label> <a href='?idp=panel_cms&kategorie&expand=" . $row['id'] . "
-                    ' id='edytuj'> <b>Rozwiń</b></a>
+                    "</b><label class='kreska'> | </label>"
+                    );
+
+                    echo("
                     </b><label class='kreska'> | </label> <a href='?idp=panel_cms&kategorie&edit=" . $row['id'] . "
                     ' id='edytuj'> <b>Edytuj</b></a> <label class='kreska'> | </label> <a href='?idp=panel_cms&kategorie&del=" . $row['id'] . "
-                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)'; thix.' onMouseOut=this.style.color='rgb(255,255,255)' onclick='return confirm('Usunąć?')> <b>Usuń</b></a><br><br>"
-                    );
+                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)' onMouseOut=this.style.color='rgb(255,255,255)' onclick='return confirm('Usunąć?')> <b>Usuń</b></a>
+                    ");
+
+                    if (!(isset($_GET['expand']))) {    // jeżeli żadna kategoria nie jest rozwinięta
+                        echo("
+                            <a href='?idp=panel_cms&kategorie&expand=" . $row['id'] . "
+                            ' id='edytuj'> <b>Rozwiń</b></a>"
+                        );
+                    }
+                    else {  // jeżeli jakaś kategoria jest rozwinięta
+
+                        if (in_array($row['id'], explode(",", $_GET['expand']))) {  // jeżeli dany wiersz jest rozwinięty
+
+                            if (count(explode(",", $_GET['expand'])) == 1) { // jeżeli rozwinięta jest tylko jedna kategoria
+                                echo ("
+                                        <a href='?idp=panel_cms&kategorie' id='edytuj'> <b>Zwiń</b></a>"
+                                );
+                            }
+
+                            else {  // jeżeli otwartych jest więcej niż 1 kategoria
+                                $opened_categories = explode(",", $_GET['expand']);
+                                $closing_category_index = (array_search($row['id'], $opened_categories));
+                                unset($opened_categories[$closing_category_index]);
+                                $opened_categories = array_filter($opened_categories);
+                                $opened_categories = implode(',', $opened_categories);
+                                echo ("
+                                    <a href='?idp=panel_cms&kategorie&expand=". $opened_categories ."' id='edytuj'> <b>Zwiń</b></a>"
+                                );
+                            }
+
+                            $query = "SELECT * FROM category_list WHERE master=:id_master LIMIT 100";
+                            $second_sth = $dbh->prepare($query);
+                            $master = strval($row['id']);
+                            
+                            $second_sth->bindParam(":id_master", $master);
+                            $second_sth->setFetchMode(PDO::FETCH_ASSOC);
+                            $second_sth->execute();
+
+                            if ($second_sth->rowCount() > 0) { // jeżeli istnieją podkategorie
+                                while ($second_row = $second_sth->fetch()) {
+                                    echo ('
+                                       </br>id: <b>' . $second_row["id"] . '</b><label class="kreska"> | </label>  Nazwa: <b>' . $second_row["name"] . ' </b></br>
+                                    ');
+                                }
+                            }
+                            else {
+                                echo ('
+                                        </br><p style="color:rgb(255,100,100);"><b>Brak podkategorii do wyświetlenia.</p></b></br>
+                                    ');
+                            }
+                        }
+                        else {  // jeżeli dany wiersz jest nierozwinięty
+                            echo ("
+                                    <a href='?idp=panel_cms&kategorie&expand=" . $_GET['expand'] . "," . $row['id'] . "' id='edytuj'> <b>Rozwiń</b></a>"
+                            );
+                        }
+                    }
+                    echo("
+
+                    ");
                 }
                 echo ("</div>");
             
@@ -71,7 +130,7 @@
     
     
     
-        if (!(isset($_GET['add']) || isset($_GET['edit']) || isset($_GET['del']) || isset($_GET['expand'])))  // kategorie wyświetlą się tylko jeżeli nie będziemy w podstronie "edytującej" daną kategorię. 
+        if (!(isset($_GET['add']) || isset($_GET['edit']) || isset($_GET['del'])))  // kategorie wyświetlą się tylko jeżeli nie będziemy w podstronie "edytującej" daną kategorię. 
         ListaKategorii();    // wyświetlanie kategorii funkcją
     }
 
