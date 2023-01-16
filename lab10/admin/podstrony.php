@@ -49,13 +49,13 @@
             if ($sth->rowCount() > 0) {
                 while ($row = $sth->fetch()) {
                     
-                    echo("
+                    echo("<p>
                     id: <b>" . $row["id"] . 
                     "</b><label class='kreska'> | </label> tytuł: <b>" . $row["page_title"] . 
                     "</b><label class='kreska'> | </label> status: <b>" . $row['status'] . 
                     "</b><label class='kreska'> | </label> <a href='?idp=panel_cms&podstrony&edit=" . $row['id'] . "
                     ' id='edytuj'> <b>Edytuj</b></a>" . "<label class='kreska'> | </label> <a href='?idp=panel_cms&podstrony&del=" . $row['id'] . "
-                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)'; thix.' onMouseOut=this.style.color='rgb(255,255,255)' onclick='return confirm('Usunąć?')> <b>Usuń</b></a><br><br>"
+                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)' onMouseOut=this.style.color='rgb(255,255,255)'> <b>Usuń</b></a><br><br></p>"
                     );
                 }
                 echo ("</div>");
@@ -72,29 +72,9 @@
             require(dirname(__DIR__, 1). '/cfg.php');
 
             $id = $_GET['add'];
-            
-            echo('
-                <link rel="stylesheet" href="css/admin.css">
-                <script src="js/checkbox.js"></script>
-                <div class="strony">
-                <div class="logowanie">
-                <form style="display: flex; flex-direction: column; align-items: stretch;" method="post">
-                <label for="page_title" style="padding-bottom:1%; font-size:1.3vw;">Status strony</label>
-                <input type="checkbox" checked="checked" name="status" id="status" style="height: 1vw; width: 1vw; align-self: center;" onclick="isCheckboxChecked()"><label id="status_label" for="status" style="color:white;">Aktywna </label>
-                <label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
-                <input type="text" name="page_title" id="page_title" placeholder="Tytuł strony">
-                <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label>
-                <center><textarea type="text" name="page_content" id="page_content" placeholder="Treść strony (HTML)" style="min-width:10%; max-width:99%;"></textarea></center>
-                <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
-                <input type="text" name="alias" id="alias" placeholder="Alias strony">
-                <div id="przyciski_logowanie">
-                <button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button>
-                <button id="edit_button" type="submit" name="save" style="margin-top:2%;" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'")>Dodaj</button><br>
-                </div>
-                </form>
-                </div>
-                </div>
-            ');
+            // To echo wygląda w ten sposób, ponieważ nie działało przekierowywanie przez header('Location:')
+            echo("
+                <link rel='stylesheet' href='css/admin.css'><script src='js/checkbox.js'></script><div class='strony'><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='page_title' style='padding-bottom:1%; font-size:1.3vw;'>Status strony</label><input type='checkbox' checked='checked' name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isCheckboxChecked()\"><label id='status_label' for='status' style='color:white;'>Aktywna </label><label for='page_title' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Tytuł strony</label><input type='text' name='page_title' id='page_title' placeholder='Tytuł strony'><label for='page_content' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kod strony</label><center><textarea type='text' name='page_content' id='page_content' placeholder='Treść strony (HTML)' style='min-width:10%; max-width:99%;'></textarea></center><label for='alias' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Alias</label><input type='text' name='alias' id='alias' placeholder='Alias strony'><div id='przyciski_logowanie'><button id='edit_button' type='submit' formaction='?idp=panel_cms&podstrony' style='margin-top:4%;' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight\'normal\'\")>Wróć</button><button id='edit_button' type='submit' name='save' style='margin-top:2%;' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button><br></div></form></div></div>'");
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
 
@@ -241,7 +221,7 @@
                 <input type="text" name="alias" id="alias" readonly value=' . $row['alias'] . '>
                 <div id="przyciski_logowanie">
                 <button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'">Wróć</button>
-                <button id="edit_button" name="del_button" onclick="refresh_diva()" type="submit" style="margin-top:4%;" onMouseOver="this.style.color=\'rgb(255,20,60)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Usuń</button></br>
+                <button id="edit_button" name="del_button" type="submit" style="margin-top:4%;" onMouseOver="this.style.color=\'rgb(255,20,60)\'; this.style.fontWeight=\'bold\'" onclick="return confirm(\'Czy chcesz na pewno usunąć kategorię?\')" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Usuń</button></br>
                 </div>
                 </form>
                 </div>

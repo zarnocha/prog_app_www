@@ -14,7 +14,7 @@
                 $akcja = 'Usuwanie';
 
             echo('
-                <link rel="stylesheet" href="css/admin.css">
+                <link rel="stylesheet" href="css/kategorie.css">
                 <div class="strony">
                 <label style="padding-top:2%; padding-bottom:1%; font-size:1.6vw;"><b>' . $akcja . 
                 '</b> kategorii powiodło się!</label>
@@ -37,26 +37,27 @@
             $sth->execute();
     
             echo('
-                <link rel="stylesheet" href="css/admin.css">
+                <link rel="stylesheet" href="css/kategorie.css">
                 <div class="strony">
                 <a href="?idp=panel_cms" id="dodaj" style="font-size:1.6vw; margin-bottom:10%;">Powróć do panelu CMS</a><br/><br/>
                 <a href="?idp=panel_cms&kategorie&add" id="dodaj" style="font-size:1.6vw; margin-bottom:10%;">Dodaj kategorię</a><br/><br/>
-                <hr style="width:30vw;"><br/>
+                <hr style="width:40vw;">
                 ');
            
             if ($sth->rowCount() > 0) {
                 while ($row = $sth->fetch()) {
                     echo("
-                    id: <b>" . $row["id"] . 
+                    <p style='display:flex;align-items:center;align-content: center;justify-content: space-around;'>
+                    id:<b>" . $row["id"] . 
                     "</b><label class='kreska'> | </label> Nazwa kategorii: <b>" . $row["name"] . 
-                    "</b><label class='kreska'> | </label> Kategoria matka: <b>" . $row['master'] . 
-                    "</b><label class='kreska'> | </label>"
+                    "</b><label class='kreska'> | </label> Kategoria matka: <b>" . $row['master']
                     );
 
                     echo("
                     </b><label class='kreska'> | </label> <a href='?idp=panel_cms&kategorie&edit=" . $row['id'] . "
                     ' id='edytuj'> <b>Edytuj</b></a> <label class='kreska'> | </label> <a href='?idp=panel_cms&kategorie&del=" . $row['id'] . "
-                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)' onMouseOut=this.style.color='rgb(255,255,255)' onclick='return confirm('Usunąć?')> <b>Usuń</b></a>
+                    ' id='usun' onMouseOver=this.style.color='rgb(255,20,60)' onMouseOut=this.style.color='rgb(255,255,255)'> <b>Usuń</b></a>
+                    <label class='kreska'> | </label>
                     ");
 
                     if (!(isset($_GET['expand']))) {    // jeżeli żadna kategoria nie jest rozwinięta
@@ -66,7 +67,6 @@
                         );
                     }
                     else {  // jeżeli jakaś kategoria jest rozwinięta
-
                         if (in_array($row['id'], explode(",", $_GET['expand']))) {  // jeżeli dany wiersz jest rozwinięty
 
                             if (count(explode(",", $_GET['expand'])) == 1) { // jeżeli rozwinięta jest tylko jedna kategoria
@@ -95,17 +95,22 @@
                             $second_sth->execute();
 
                             if ($second_sth->rowCount() > 0) { // jeżeli istnieją podkategorie
+                                echo ("<p><b>Podkategorie:</b></p>");
                                 while ($second_row = $second_sth->fetch()) {
+                                    echo ('<div style="display: flex; justify-content: center;">');
+                                    echo ('<p style="display:flex;margin:0;justify-content:space-evenly;align-items:center;margin-bottom:2%; width:30%;">');
                                     echo ('
-                                       </br>id: <b>' . $second_row["id"] . '</b><label class="kreska"> | </label>  Nazwa: <b>' . $second_row["name"] . ' </b></br>
+                                       id: <b>' . $second_row["id"] . '</b><label class="kreska"> | </label>  Nazwa: <b>' . $second_row["name"] . ' </b></p></div>
                                     ');
                                 }
+                                echo('<hr style="border:0; border-top:0.1px solid #eee; width:30vw;">');
                             }
                             else {
                                 echo ('
                                         </br><p style="color:rgb(255,100,100);"><b>Brak podkategorii do wyświetlenia.</p></b></br>
                                     ');
                             }
+                            // echo ('</p></div>');
                         }
                         else {  // jeżeli dany wiersz jest nierozwinięty
                             echo ("
@@ -113,9 +118,9 @@
                             );
                         }
                     }
-                    echo("
-
-                    ");
+                    // echo("
+                    //     </p>
+                    // ");
                 }
                 echo ("</div>");
             
