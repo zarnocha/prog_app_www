@@ -64,7 +64,7 @@
     padding: 0.5vw;
 }
 
-.przyciski_logowanie {
+#przyciski_logowanie {
     display: flex;
     /* display:inline-flex; */
     justify-content: flex-end;
@@ -77,7 +77,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    padding-bottom: 2%;
+    margin-bottom: 2%;
+    padding: 1%;
     text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
         0px 4px 3px rgba(0, 0, 0, 0.4),
         0px 8px 13px rgba(0, 0, 0, 0.1),
