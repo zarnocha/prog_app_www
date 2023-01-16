@@ -31,17 +31,14 @@
         $_SESSION['password'] = $_POST['login_pass'];
     }
 
-    if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' - czyli formularz został zatwierdzony - i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
+    if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' - czyli formularz został zatwierdzony poprzez przypisanie loginu do sesji - i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
                                     // co oznacza, że użytkownik jest zalogowany.
         if($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {
             $_SESSION['auth'] = true;
             $_SESSION['success'] = false;
             header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=panel_cms');  // przeniesienie użytkownika z panelu logowania do panelu CMS
         }
-    }
-
-    if(isset($_SESSION['login'])) { // jeżeli formularz został zatwierdzony
-        if (!($_SESSION['login'] === $login && $_SESSION['password'] === $pass)) {  // jeżeli login bądź hasło jest nieprawidłowe - wykonujemy ten kod (zmienna sesji 'auth' ustawiana jest na False - użytkownik niezalogowany + usuwamy przypisane dane).
+        else {
             unset($_SESSION['login']);
             unset($_SESSION['password']);
             $_SESSION['auth'] = false;

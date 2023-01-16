@@ -15,7 +15,7 @@
 		$strona = PokazKontakt();
 	} 
 
-	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy podstronę "kontakt" z pliku contact.php
+	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy formularz logowania z pliku login.php
 		require_once('admin/login.php');
 		$strona = FormularzLogowania();
 	}
