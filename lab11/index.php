@@ -15,9 +15,14 @@
 		$strona = PokazKontakt();
 	} 
 
-	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy podstronę "kontakt" z pliku contact.php
+	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy formularz logowania z pliku login.php
 		require_once('admin/login.php');
 		$strona = FormularzLogowania();
+	}
+
+	elseif ($_GET['idp'] == 'register') {	// jeżeli w zmiennej idp będzie "register", to wyświetlamy formularz rejestracji z pliku rejestracja.php
+		require('admin/rejestracja.php');
+		$strona = FormularzRejestracji();
 	}
 
 	elseif ($_GET['idp'] == 'panel_cms') {	// jeśli w zmiennej idp będzie "panel_cms" to na razie nie wykonujemy żadnego działania
@@ -78,12 +83,17 @@
 				require(__DIR__. '/cfg.php');
 
 				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
-					if ($_SESSION['login'] === $login && $_SESSION['password'] === $pass) {	// jeżeli zgadzają się one z danymi administratora
-						if ($_GET['idp'] == 'panel_cms') {	// jeżeli jesteśmy w panelu cms
-							$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
+					if ($_SESSION['logged'] === true) {	// jeżeli jest zalogowany
+						if ($_SESSION['auth'] === true) {
+							if ($_GET['idp'] == 'panel_cms') {	// jeżeli jesteśmy w panelu cms
+								$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
+							}
+							else
+								$czyZalogowany = '<a href="?idp=panel_cms">Panel CMS</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza panelem CMS - dodajemy do niego przycisk
 						}
-						else
-							$czyZalogowany = '<a href="?idp=panel_cms">Panel CMS</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza panelem CMS - dodajemy do niego przycisk
+						else {
+							$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// wyświetlamy tylko przycisk od wylogowywania się
+						}
 					}
 				}
 				else

@@ -2,9 +2,6 @@
 
     // plik konfiguracyjny zawierający zmienne odpowiadające za połączenie z bazą danych.
     
-    $login = 'admin';   // dane logowania do konta administratora z dostępem do CMS-a
-    $pass = 'admin';
-    
     // łączenie z bazą danych przez rozszerzenie PDO, która skutecznie uniemożliwia ataki typu SQL Injection
     try{
         $dbh = new PDO('mysql:host=localhost;dbname=my_site;charset=utf8mb4', 'root', '');
