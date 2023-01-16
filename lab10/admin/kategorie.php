@@ -3,7 +3,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {   // weryfikacja, czy użytkownik jest zalogowany, aby mieć dostęp do CMS
         if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
 
             if ($_SESSION['action'] == 'add')
@@ -44,11 +44,11 @@
                 <div style="display: flex; justify-content: space-evenly;">
                 <a href="?idp=panel_cms&kategorie&expand=');
                 
-                $rozwin_query = "SELECT id FROM category_list WHERE master=0 LIMIT 100";
+                $rozwin_query = "SELECT id FROM category_list WHERE master=0 LIMIT 100";    // pobieranie wszystkich kategorii głównych do rozwinięcia ich podstron
                 $rozwin_sth = $dbh->prepare($rozwin_query);
                 $rozwin_sth->execute();
                 $result = $rozwin_sth->fetchAll(PDO::FETCH_COLUMN, 0);
-                $result = implode(',', $result);
+                $result = implode(',', $result);    // zamiana tablicy w string, aby dodać do linku do $_GET['expand']
 
             echo ($result . '" id="dodaj" style="font-size:1.6vw;">Rozwiń wszystkie</a>
                 <a href="?idp=panel_cms&kategorie" id="dodaj" style="font-size:1.6vw;">Zwiń wszystkie</a>
@@ -57,14 +57,13 @@
                 <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;flex-wrap: wrap;">
                 ');
 
-            if ($sth->rowCount() > 0) {
-                while ($row = $sth->fetch()) {
+            if ($sth->rowCount() > 0) { // jeżeli istnieją kategorie główne
+                while ($row = $sth->fetch()) {  // iteracja zmienną $row po kat. głównych
                     echo("
                     
-                    <p style='display:flex;align-items:center;align-content: center;justify-content: space-around; width:80%;'>
+                    <p style='display:flex;align-items:center;align-content: center;justify-content: space-around; width:60%;'>
                     id:<b>" . $row["id"] . 
-                    "</b><label class='kreska'> | </label> Nazwa kategorii: <b>" . $row["name"] . 
-                    "</b><label class='kreska'> | </label> Kategoria matka: <b>" . $row['master']
+                    "</b><label class='kreska'> | </label> Nazwa kategorii: <b>" . $row["name"]
                     );
 
                     echo("
@@ -100,7 +99,7 @@
                                 );
                             }
 
-                            $query = "SELECT * FROM category_list WHERE master=:id_master LIMIT 100";
+                            $query = "SELECT * FROM category_list WHERE master=:id_master LIMIT 100";   // pobieranie podkategorii z bazy danych na podstawie aktualnej kat. głównej
                             $second_sth = $dbh->prepare($query);
                             $master = strval($row['id']);
                             
@@ -110,9 +109,9 @@
 
                             if ($second_sth->rowCount() > 0) { // jeżeli istnieją podkategorie
                                 echo ("<p><b>Podkategorie:</b></p>");
-                                while ($second_row = $second_sth->fetch()) {
+                                while ($second_row = $second_sth->fetch()) {    // iteracja po podkategoriach zm. $second_row
                                     echo ('<div style="display: flex; justify-content: center;">');
-                                    echo ('<p style="display:flex; margin:0; justify-content:space-evenly; align-items:center; margin-bottom:2%; width:50%;">');
+                                    echo ('<p style="display:flex; margin:0; justify-content:space-evenly; align-items:center; margin-bottom:2%; width:70%;">');
                                     echo ('
                                        id: <b>' . $second_row["id"] . '</b><label class="kreska"> | </label>  Nazwa: <b>' . $second_row["name"] . ' </b>
                                        <label class="kreska"> | </label> <a href="?idp=panel_cms&kategorie&edit=' . $second_row['id'] . 
@@ -270,7 +269,7 @@
     
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-                $query = "DELETE FROM category_list WHERE id=:id LIMIT 1";
+                $query = "DELETE FROM category_list WHERE id=:id LIMIT 1"; 
                 $sth = $dbh->prepare($query);
                 $sth->bindParam(':id', $id);
                 $sth->execute();

@@ -46,8 +46,8 @@
                 <hr style="width:30vw;"><br/>
                 ');
            
-            if ($sth->rowCount() > 0) {
-                while ($row = $sth->fetch()) {
+            if ($sth->rowCount() > 0) { // jeżeli istnieje co najmniej 1 podstrona
+                while ($row = $sth->fetch()) {  // iteracja po podstronach
                     
                     echo("<p>
                     id: <b>" . $row["id"] . 
@@ -85,7 +85,7 @@
                 $alias = $_POST['alias'];
 
                 $status = 0;
-                    if (isset($_POST['status'])) {
+                    if (isset($_POST['status'])) { 
                         $status = 1;
                     }
                     else {
@@ -119,10 +119,10 @@
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute();
 
-            while ($row = $sth->fetch()) {
+            while ($row = $sth->fetch()) {  // iteracja po podstronach
                 
                 $check = true;
-                if ($row['status'] == 0) {
+                if ($row['status'] == 0) {  // sprawdzanie, jaki jest status danej podstrony i ustawiamy na taki sam zmienną $check, żeby móc wyświetlić aktualny status podstrony
                     $check = false;
                 }
 
@@ -143,19 +143,7 @@
                 $page_content = $row['page_content'];
                 $page_content = htmlspecialchars($page_content);    // sprawia to, że kod ze znacznikami HTML nie wykonują się
                  
-                echo ('
-                    <link rel="stylesheet" href="css/admin.css">
-                    <label for="id" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">ID</label>
-                    <input type="number" name="id" id="id" disabled value="' . $row['id'] . 
-                    '">
-                    <label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
-                    <input type="text" name="page_title" id="page_title" placeholder="Tytuł" value="' . $row['page_title'] . 
-                    '">
-                    <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label>
-                    <center><textarea type="text" name="page_content" id="page_content" placeholder="Treść" style="min-width:10%; max-width:99%;">' . $page_content . 
-                    '</textarea></center>
-                    <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
-                    <input type="text" name="alias" id="alias" placeholder="Alias" value=' . $row['alias'] . '><div id="przyciski_logowanie"><button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button><button id="edit_button" type="submit" name="save" style="margin-top:2%;" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Zapisz</button></form></div></div>');
+                echo ('<link rel="stylesheet" href="css/admin.css"><label for="id" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">ID</label><input type="number" name="id" id="id" disabled value="' . $row['id'] . '"><label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label><input type="text" name="page_title" id="page_title" placeholder="Tytuł" value="' . $row['page_title'] . '"><label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label><center><textarea type="text" name="page_content" id="page_content" placeholder="Treść" style="min-width:10%; max-width:99%;">' . $page_content . '</textarea></center><label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label><input type="text" name="alias" id="alias" placeholder="Alias" value=' . $row['alias'] . '><div id="przyciski_logowanie"><button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button><button id="edit_button" type="submit" name="save" style="margin-top:2%;" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Zapisz</button></form></div></div>');
 
             }
                 
@@ -206,7 +194,7 @@
         $sth->setFetchMode(PDO::FETCH_ASSOC);
         $sth->execute();
 
-        while ($row = $sth->fetch()) {
+        while ($row = $sth->fetch()) {  // iteracja po podstronach
             echo ('
                 <link rel="stylesheet" href="css/admin.css">
                 <div class="strony">
@@ -216,7 +204,7 @@
                 <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
                 <input type="text" name="page_title" id="page_title" readonly value=' . $row['page_title'] . '>
                 <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod podstrony</label>
-                <center><textarea type="text" name="page_content" id="page_content" readonly style="min-width:10%; max-width:99%;" value=' . $row['page_content'] .  '></textarea></center>
+                <center><textarea type="text" name="page_content" id="page_content" readonly style="min-width:10%; max-width:99%;">' . $row['page_content'] .  '</textarea></center>
                 <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
                 <input type="text" name="alias" id="alias" readonly value=' . $row['alias'] . '>
                 <div id="przyciski_logowanie">
@@ -238,7 +226,7 @@
             $sth->execute();
             $_SESSION['success'] = true;
             $_SESSION['action'] = 'del';
-            header('Location: ?idp=panel_cms');
+            header('Location: ?idp=panel_cms&podstrony');
             
         }
     }
