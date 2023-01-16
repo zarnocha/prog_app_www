@@ -17,7 +17,7 @@
         else {
             echo ('
                     <link rel="stylesheet" href="css/panel_cms.css">
-                    <div class="tlo" style="display: flex; justify-content: center;flex-direction: column">
+                    <div class="tlo" style="display: flex; justify-content: center;flex-direction: column;">
 
                         <div class="wybor" onclick="location.href=\'?idp=panel_cms&podstrony\'";>
                         <a class="opcja" href="?idp=panel_cms&podstrony" >Edytuj podstrony</a>
@@ -26,7 +26,10 @@
                         <div class="wybor" onclick="location.href=\'?idp=panel_cms&kategorie\'">
                         <a href="?idp=panel_cms&kategorie" class="opcja">Edytuj kategorie</a><br/><br/>
                         </div>
-                    
+
+                        <div class="wybor" onclick="location.href=\'?idp=panel_cms&produkty\'">
+                        <a href="?idp=panel_cms&produkty" class="opcja">Edytuj produkty</a><br/><br/>
+                        </div>
                     </div>
 
                 ');

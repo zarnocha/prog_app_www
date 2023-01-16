@@ -4,9 +4,9 @@
     error_reporting(E_ALL); 
     require(dirname(__DIR__, 1). '/cfg.php');
 
-    // Funkcja FormularzLogowania() wyświetla formularz logowania do panelu CMS, 
-    // który do zmiennych $_POST['login_email'] oraz $_POST['login_pass'] zapisuje e-mail oraz hasło wprowadzone przez użytkownika 
-    // do weryfikacji i przekierowania dalej. 
+    // Funkcja FormularzRejestracji() wyświetla formularz rejestracji nowego użytkownika, 
+    // który do zmiennych $_POST['register_email'] oraz $_POST['register_pass'] zapisuje e-mail oraz hasło wprowadzone przez użytkownika 
+    // do weryfikacji i przesłania do bazy danych. 
 
     function FormularzRejestracji() {
         $register_form = '
@@ -59,42 +59,5 @@
         unset($_SESSION['registered']);
         header('Location: ?idp=login');
     }
-    // if(isset($_SESSION['login'])) { // jeżeli jest przypisana zmienna sesji 'login' - czyli formularz został zatwierdzony - i zgadza się ona wraz z hasłem z danymi logowania => zmienna weryfikacyjna sesji jest ustawiona na True, 
-    //                                 // co oznacza, że użytkownik jest zalogowany.
-
-    //     require(dirname(__DIR__, 1). '/cfg.php');
-    //     $query = "SELECT * FROM accounts WHERE email=:login LIMIT 1";
-    //     $sth = $dbh->prepare($query);
-    //     $sth->bindValue(':login', $_SESSION['login']);
-    //     $sth->setFetchMode(PDO::FETCH_ASSOC);
-    //     $sth->execute();
-    //     $result = $sth->fetchAll();
-
-    //     $email = $result[0]['email'];
-    //     $password = $result[0]['password'];
-    //     $is_admin = $result[0]['is_admin'];
-        
-    //     if($_SESSION['login'] === $email && password_verify($password, $_SESSION['password'])) {
-    //         if ($is_admin) {
-    //             $_SESSION['auth'] = true;
-    //         } else
-    //             $_SESSION['auth'] = false;
-
-    //         $_SESSION['success'] = false;
-    //         header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=panel_cms');  // przeniesienie użytkownika z panelu logowania do panelu CMS
-    //     }
-
-    //     else {
-    //         unset($_SESSION['login']);
-    //         unset($_SESSION['password']);
-    //         $_SESSION['auth'] = false;
-    //         header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=panel_cms');
-    //     }
-    // }
-
-
-    // function Wyloguj() {    // funkcja służąca do usuwania sesji - w tym usunięciu danych logowania - i powrotu do strony głównej
-    //     session_destroy();
-    //     header('Location: ?idp=');
-    // }
+    
 ?>

@@ -21,10 +21,15 @@
 	}
 
 	elseif ($_GET['idp'] == 'register') {	// jeżeli w zmiennej idp będzie "register", to wyświetlamy formularz rejestracji z pliku rejestracja.php
-		require('admin/rejestracja.php');
-		$strona = FormularzRejestracji();
+		if (!($_SESSION['logged'])) {	// formularz zostanie wyświetlony niezalogowanemu użytkownikowi
+			require('admin/rejestracja.php');
+			$strona = FormularzRejestracji();
+		}
+		else {	// jeżeli użytkownik jest zalogowany, to nie będzie miał dostępu do rejestracji
+			header("Location: ?idp=");
+		}
 	}
-
+	
 	elseif ($_GET['idp'] == 'panel_cms') {	// jeśli w zmiennej idp będzie "panel_cms" to na razie nie wykonujemy żadnego działania
 		;
 	}

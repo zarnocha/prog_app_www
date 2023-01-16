@@ -3,8 +3,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL); 
     require(dirname(__DIR__, 1). '/cfg.php');
-session_abort();
-session_start();
+    session_abort();
+    session_start();
     // Funkcja FormularzLogowania() wyświetla formularz logowania do panelu CMS, 
     // który do zmiennych $_POST['login_email'] oraz $_POST['login_pass'] zapisuje e-mail oraz hasło wprowadzone przez użytkownika 
     // do weryfikacji i przekierowania dalej. 
