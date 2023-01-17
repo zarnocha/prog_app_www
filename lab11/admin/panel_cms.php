@@ -14,6 +14,10 @@
             require_once('admin/kategorie.php');
         } 
 
+        elseif (isset($_GET['produkty'])) {
+            require_once('admin/produkty.php');
+        } 
+
         else {
             echo ('
                     <link rel="stylesheet" href="css/panel_cms.css">
