@@ -212,7 +212,8 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
                
                 require_once(dirname(__DIR__, 1). '/cfg.php');
-
+                
+                $id = $_GET['edit'];
                 $category_name = $_POST['category_name'];
                 $master = $_POST['master'];
 

@@ -81,6 +81,13 @@
     font-size: 1vw;
     width:10vw;
     align-self: center;
+    text-align: center;
+}
+
+#net_price::placeholder {
+    text-align: center;
+    padding-top: 1%;
+    padding-left: 10%;
 }
 
 #vat {
@@ -90,6 +97,13 @@
     font-size: 1vw;
     width:5vw;
     align-self: center;
+    text-align: center;
+}
+
+#vat::placeholder {
+    text-align: center;
+    padding-top: 1%;
+    padding-left: 15%;
 }
 
 #quanity {
@@ -99,6 +113,13 @@
     font-size: 1vw;
     width: max-content;
     align-self: center;
+    text-align: center;
+}
+
+#quanity::placeholder {
+    text-align: center;
+    padding-top: 1%;
+    padding-left: 6%;
 }
 
 #category_select {
@@ -108,6 +129,23 @@
     font-size: 1vw;
     width: max-content;
     align-self: center;
+}
+
+#size {
+    font-family: 'Raleway';
+    /* width: 7vw; */
+    /* padding-bottom: 1%; */
+    font-size: 1vw;
+    width: max-content;
+    align-self: center;
+}
+
+#input_picture {
+    font-family: 'Raleway';
+    align-self: center;
+    font-size: 1vw;
+    width: 6vw;
+    text-align: center;
 }
 
 #przyciski {
@@ -142,6 +180,8 @@
     font-size: 1vw;
     text-align: center;
 }
+
+
 
 #img {
     width: 1px;

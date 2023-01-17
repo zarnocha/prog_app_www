@@ -15,11 +15,12 @@
 
             echo('
                 <link rel="stylesheet" href="css/kategorie.css">
-                <div class="strony">
+                <div class="strony" style="width: 80%;">
                 <label style="padding-top:2%; padding-bottom:1%; font-size:1.6vw;"><b>' . $akcja . 
                 '</b> produktu powiodło się!</label>
                 </div>
             ');
+
             $_SESSION['success'] = false;   // po wyświetleniu komunikatu o pomyślnym ukończeniu akcji nie chcemy wyświetlać jej ponownie
             unset($akcja);  // zabezpieczenie, aby przypadkiem nie wyświetlił się komunikat gdy nie wykonano żadnej akcji
         }
@@ -50,7 +51,7 @@
                     echo("
                     
                     <p style='display:flex;align-items:center;align-content: center;justify-content: space-around; width:80%;'>
-                    <img height='150px' width='150px' src=data:image/png;base64," . $row['picture'] . " /> <label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Nazwa: <b><a href='?idp=panel_cms&produkty&details=" . $row['id'] . "'>" . $row["product_name"] . "</a></b></label><label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Cena: <b>" . round($row['net_price'] * $row['vat'], 2) . "</b></label><label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Dostępność: <b " . ($row['availability'] == 1 ? ("style='color: rgb(52, 216, 52);'>Jest dostępny") : ("style='color: rgb(255, 20, 60);'>Nie jest dostępny")). "</b></label><label class='kreska_przedmiotu'> | </label>"
+                    <img height='150px' width='150px' src='" . $row['picture'] . "' /> <label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Nazwa: <b><a href='?idp=panel_cms&produkty&details=" . $row['id'] . "'>" . $row["product_name"] . "</a></b></label><label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Cena: <b>" . round($row['net_price'] * $row['vat'], 2) . "</b></label><label class='kreska_przedmiotu'> | </label><label class='kolumna_przedmiotu'>Dostępność: <b " . ($row['availability'] == 1 ? ("style='color: rgb(52, 216, 52);'>Jest dostępny") : ("style='color: rgb(255, 20, 60);'>Nie jest dostępny")). "</b></label><label class='kreska_przedmiotu'> | </label>"
                     );
 
                     echo("
@@ -83,9 +84,9 @@
             $sth->execute();
 
             // To echo wygląda w ten sposób, ponieważ nie działało przekierowywanie przez header('Location:')
-            echo ("<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script><div class='strony'><p id='dodaj' style='font-size:1.6vw;'>Dodawanie produktu</p><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>");
+            echo ("<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script><div class='strony' style='width:80%;'><p id='dodaj' style='font-size:1.6vw;'><b>Dodawanie</b> produktu</p><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>");
             echo ("<input type='text' name='product_name' id='product_name' placeholder='Nazwa produktu' required=required><label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kod strony</label><center>");
-            echo("<textarea type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'></textarea></center><label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label><input type='datetime-local' name='expiration_date' id='expiration_date'><label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label><input type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto' required=required><label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)' required=required><label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label><input type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość' required=required><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input type='checkbox' checked='checked' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isProductAvailable();\"><label id='availability_text' for='status' style='color:white;'>Tak</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label><select id='category_select'>");
+            echo("<textarea type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'></textarea></center><label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label><input type='datetime-local' name='expiration_date' id='expiration_date'><label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label><input type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto' required=required><label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)' required=required><label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label><input type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość' required=required><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input type='checkbox' checked='checked' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isProductAvailable();\"><label id='availability_text' for='status' style='color:white;'>Tak</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label><select name='category_select' id='category_select'>");
 
             
             while ($row = $sth->fetch()) {
@@ -96,12 +97,12 @@
 
             echo ("</select>");
 
-            echo ("<label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label><select id='category_select'>");
+            echo ("<label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label><select name='size' id='size'>");
 
             $gabaryty = ['małe', 'średnie', 'duże'];
 
             foreach ($gabaryty as &$gabaryt) {
-                echo ("<option style='text-align: center;' value='" . $gabaryt . "'>");
+                echo ("<option  style='text-align: center;' value='" . $gabaryt . "'>");
                 echo ($gabaryt);
                 echo ("</option>");
             }
@@ -116,17 +117,41 @@
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
                 require(dirname(__DIR__, 1). '/cfg.php');
-                $
+                $product_name = $_POST['product_name'];
+                $product_description = $_POST['product_description'];
+                $creation_date = date('Y/m/d h:i:s', time());
+                $modification_date = date('Y/m/d h:i:s', time());
+                $expiration_date = $_POST['expiration_date'];
+                $net_price = $_POST['net_price'];
+                $vat = $_POST['vat'];
+                $vat = 1 + ($vat / 100);
+                $quanity = $_POST['quanity'];
+                $availability = ($_POST['availability'] == 'on' ? '1' : 0);
+                $category_id = $_POST['category_select'];
+                $size = $_POST['size'];
+                $picture = $_POST['base64_img'];
 
-                // $query = "INSERT INTO category_list (master, name) VALUES (:master, :category_name)";
-                // $sth = $dbh->prepare($query);
-                // $sth->bindParam(':master', $master);
-                // $sth->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+                // $query = "INSERT INTO product_list (master, name) VALUES (:master, :category_name)";
+                $query = "INSERT INTO product_list (product_name, product_description, creation_date, modification_date, expiration_date, net_price, vat, quanity, availability, category_id, size, picture) VALUES (:product_name, :product_description, :creation_date, :modification_date, :expiration_date, :net_price, :vat, :quanity, :availability, :category_id, :size, :picture)";
+                $sth = $dbh->prepare($query);
+                $sth->bindValue(':product_name', $product_name);
+                $sth->bindValue(':product_description', $product_description);
+                $sth->bindValue(':creation_date', $creation_date);
+                $sth->bindValue(':modification_date', $modification_date);
+                $sth->bindValue(':expiration_date', $expiration_date);
+                $sth->bindValue(':net_price', $net_price);
+                $sth->bindValue(':vat', $vat);
+                $sth->bindValue(':quanity', $quanity);
+                $sth->bindValue(':availability', $availability);
+                $sth->bindValue(':category_id', $category_id);
+                $sth->bindValue(':size', $size);
+                $sth->bindValue(':picture', $picture);
+                
                 // $sth->setFetchMode(PDO::FETCH_ASSOC);
-                // $sth->execute();
+                $sth->execute();
     
-                // $_SESSION['success'] = true;
-                // $_SESSION['action'] = 'add';
+                $_SESSION['success'] = true;
+                $_SESSION['action'] = 'add';
                 header('Location: ?idp=panel_cms&produkty');
             }
         }
@@ -136,47 +161,116 @@
             require(dirname(__DIR__, 1). '/cfg.php');
             
             $id = $_GET['edit'];
-            $query = "SELECT * FROM category_list WHERE id=:id LIMIT 1";
+            $query = "SELECT * FROM product_list WHERE id=:id LIMIT 1";
             $sth = $dbh->prepare($query);
             $sth->bindParam(':id', $id);
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute();
+            // $row = $sth->fetchAll();
 
+            $second_query = "SELECT * FROM category_list LIMIT 100";
+            $second_sth = $dbh->prepare($second_query);
+            $second_sth->setFetchMode(PDO::FETCH_ASSOC);
+            $second_sth->execute();
+            
+            // To echo wygląda w ten sposób, ponieważ nie działało przekierowywanie przez header('Location:')
             while ($row = $sth->fetch()) {
+                $check = ($row['availability'] == 1 ? true : false);
+                echo "<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script><div class='strony'><p id='dodaj' style='font-size:1.6vw;'><b>Edytowanie</b> produktu</p><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>";
+                echo "<input type='text' name='product_name' id='product_name' placeholder='Nazwa produktu' required=required value='" . $row['product_name'] . "'><label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kod strony</label><center>";
+                echo "<textarea type='text' name='product_description' id='product_description' ";
+                echo "placeholder='Opis produktu' style='min-width:10%; ";
+                echo "max-width:99%;'>";
+                echo $row['product_description'];
+                echo ('</textarea></center>');
+                echo "<label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label><input type='datetime-local' name='expiration_date' id='expiration_date' value='" . $row['expiration_date'] . "'><label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label><input type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto' required=required value='" . $row['net_price'] . "'><label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)' required=required value='" . ($row['vat'] - 1) * 100 . "'><label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label><input type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość' required=required value='" . $row['quanity'] . "'><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input type='checkbox' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isProductAvailable();\"". ($check ? 'checked' : "") . " ><label id='availability_text' for='status' style='color:white;'>". ($check == 1 ? 'Tak' : "Nie") ."</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label><select name='category_select' id='category_select'>";
+             }
 
-                echo("
-                    <div class='strony'>
-                    <p id='dodaj' style='font-size:1.6vw;'><b>Edytowanie</b> produktu</p>
-                    <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
-                ");
-                
-                echo ('
-                    <link rel="stylesheet" href="css/kategorie.css">
-                    <label for="id" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">ID</label>
-                    <input type="number" name="id" id="id" disabled value="' . $row['id'] . 
-                    '">
-                    <label for="category_name" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
-                    <input type="text" name="category_name" id="category_name" placeholder="Nazwa produktu" value="' . $row['name'] . 
-                    '">
-                    <label for="master" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kategoria-matka</label>
-                    <input type="number" min=0 name="master" id="master" placeholder="Kategoria-matka" value=' . (($row['master'] == 0) ? '' : $row['master']) . '><div id="przyciski"><button id="przycisk" type="submit" formaction="?idp=panel_cms&produkty" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button><button id="przycisk" type="submit" name="save" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Zapisz</button></form></div></div>');
+       
+            $query = "SELECT * FROM product_list WHERE id=:id LIMIT 1";
+            $sth = $dbh->prepare($query);
+            $sth->bindParam(':id', $id);
+            $sth->setFetchMode(PDO::FETCH_ASSOC);
+            $sth->execute();
+            $row = $sth->fetchAll();
+             
+            while ($second_row = $second_sth->fetch()) {
+                echo ("<option style='text-align: center;' " . ($row[0]['category_id'] == $second_row['id'] ? 'selected' : '') . " value='" . $second_row['id'] . "' >");
+                echo ($second_row['name']);
+                echo ("</option>");
+            }
 
+            echo ("</select>");
+
+            echo ("<label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label><select name='size' id='size'>");
+
+            $gabaryty = ['małe', 'średnie', 'duże'];
+
+            foreach ($gabaryty as &$gabaryt) {
+                echo ("<option  style='text-align: center;' " . ($row[0]['size'] == $gabaryt ? 'selected' : '') . " value='" . $gabaryt . "'>");
+                echo ($gabaryt);
+                echo ("</option>");
+            }
+
+            echo ("</select><label for='picture' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Dodaj zdjęcie</label><center><input id='input_picture' type='file'></center>");
+
+            echo ("<script src='js/image_to_b64.js'></script>");
+            if (!(empty($row[0]['picture'])))
+            {
+                $_POST['old_picture'] = $row[0]['picture'];
+                echo("<center><img id='img' style='width: 150px;height: 150px' src=" . $row[0]['picture'] . "></center><input style='display:none;' type='text' id='b64' name='base64_img' /> <div id='przyciski'><button id='przycisk' type='submit' formaction='?idp=panel_cms&produkty' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button><button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\">Zapisz</button><br></div></form></div></div>");
+            }
+
+            else {
+                echo("<center><img id='img'></center><input style='display:none;' type='text' id='b64' name='base64_img' /> <div id='przyciski'><button id='przycisk' type='submit' formaction='?idp=panel_cms&produkty' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button><button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\">Zapisz</button><br></div></form></div></div>");
             }
                 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
-               
+                ob_end_clean();
                 require_once(dirname(__DIR__, 1). '/cfg.php');
+                $id = $_GET['edit'];                
+                $product_name = $_POST['product_name'];
+                $product_description = $_POST['product_description'];
+                $creation_date = date('Y/m/d h:i:s', time());
+                $modification_date = date('Y/m/d h:i:s', time());
+                $expiration_date = $_POST['expiration_date'];
+                $net_price = $_POST['net_price'];
+                $vat = $_POST['vat'];
+                $vat = 1 + ($vat / 100);
+                $quanity = $_POST['quanity'];
+                
+                $availability = (isset($_POST['availability']) ? 1 : 0);
 
-                $category_name = $_POST['category_name'];
-                $master = $_POST['master'];
+                // $availability = ($_POST['availability'] == 'on' ? 1 : 0);
+                // echo ($availability);
 
-                if (empty($master))
-                    $master = 0;
+                $category_id = $_POST['category_select'];
+                $size = $_POST['size'];
+                $picture = $_POST['base64_img'];
 
-                $query = "UPDATE category_list SET master=:master, name=:category_name WHERE id=$id LIMIT 1";
+                if (empty($picture)) {
+                    if (empty($_POST['old_picture'])) {
+                        $picture = '';
+                    }
+                    else {
+                        $picture = $_POST['old_picture'];
+                    }
+                }
+
+                $query = "UPDATE product_list SET product_name=:product_name, product_description=:product_description, creation_date=:creation_date, modification_date=:modification_date, expiration_date=:expiration_date, net_price=:net_price, vat=:vat, quanity=:quanity, availability=:availability, category_id=:category_id, size=:size, picture=:picture WHERE id=$id LIMIT 1";
                 $sth = $dbh->prepare($query);
-                $sth->bindParam(':master', $master);
-                $sth->bindParam(':category_name', $category_name, PDO::PARAM_STR);
+                $sth->bindValue(':product_name', $product_name);
+                $sth->bindValue(':product_description', $product_description);
+                $sth->bindValue(':creation_date', $creation_date);
+                $sth->bindValue(':modification_date', $modification_date);
+                $sth->bindValue(':expiration_date', $expiration_date);
+                $sth->bindValue(':net_price', $net_price);
+                $sth->bindValue(':vat', $vat);
+                $sth->bindValue(':quanity', $quanity);
+                $sth->bindValue(':availability', $availability);
+                $sth->bindValue(':category_id', $category_id);
+                $sth->bindValue(':size', $size);
+                $sth->bindValue(':picture', $picture);
                 $sth->execute();
                     
                 $_SESSION['success'] = true;
