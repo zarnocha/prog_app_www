@@ -2,34 +2,37 @@
 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL); 
-    
+    error_reporting(E_ALL);
+
     if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {   // weryfikacja, czy użytkownik jest zalogowany, aby mieć dostęp do CMS
 
-        if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
-
+        function PomyslnaAkcja() {
             if ($_SESSION['action'] == 'add')
-                $akcja = 'Dodawanie';
-            elseif ($_SESSION['action'] == 'edit')
-                $akcja = 'Edytowanie';
-            elseif ($_SESSION['action'] == 'del')
-                $akcja = 'Usuwanie';
+                    $akcja = 'Dodawanie';
+                elseif ($_SESSION['action'] == 'edit')
+                    $akcja = 'Edytowanie';
+                elseif ($_SESSION['action'] == 'del')
+                    $akcja = 'Usuwanie';
 
-            echo('
-                <link rel="stylesheet" href="css/admin.css">
-                <div class="strony">
-                <label style="padding-top:2%; padding-bottom:1%; font-size:1.6vw;"><b>' . $akcja . 
-                '</b> podstrony powiodło się!</label>
-                </div>
-            ');
-            $_SESSION['success'] = false;   // po wyświetleniu komunikatu o pomyślnym ukończeniu akcji nie chcemy wyświetlać jej ponownie
-            unset($akcja);  // zabezpieczenie, aby przypadkiem nie wyświetlił się komunikat gdy nie wykonano żadnej akcji
+                echo('
+                    <link rel="stylesheet" href="css/admin.css">
+                    <div class="strony">
+                    <label style="padding-top:2%; padding-bottom:1%; font-size:1.6vw;"><b>' . $akcja .
+                    '</b> podstrony powiodło się!</label>
+                    </div>
+                ');
+                $_SESSION['success'] = false;   // po wyświetleniu komunikatu o pomyślnym ukończeniu akcji nie chcemy wyświetlać jej ponownie
+                unset($akcja);  // zabezpieczenie, aby przypadkiem nie wyświetlił się komunikat gdy nie wykonano żadnej akcji
         }
-        
+
+        if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
+            PomyslnaAkcja();
+        }
+
         // Funkcja ListaPodstron() zwraca listę zawierającą podstrony pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php, 
         // następnie wykonuje kwerendę do bazy aby dostać z powrotem podstrony do zmiennej $result.
         // Kolejno za pomocą polecenia echo wyświetlam div'a z podstronami.
-        
+
         function ListaPodstron() {
             require(dirname(__DIR__, 1). '/cfg.php');   // wymagany jest plik konfiguracyjny łączący z bazą danych
 
@@ -66,26 +69,38 @@
 
         }
 
-
-        if (isset($_GET['add'])) {  // jeżeli chcemy wykonać dodawanie podstrony - ustawiona jest zmienna 'add' w linku - wykonuje się ta część kodu
-            
+        function DodajPodstrone() {
             require(dirname(__DIR__, 1). '/cfg.php');
 
             $id = $_GET['add'];
             // To echo wygląda w ten sposób, ponieważ nie działało przekierowywanie przez header('Location:')
             echo("
-                <link rel='stylesheet' href='css/admin.css'><script src='js/checkbox.js'></script><div class='strony'><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='status' style='padding-bottom:1%; font-size:1.3vw;'>Status strony</label><input type='checkbox' checked='checked' name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isCheckboxChecked()\"><label id='status_label' for='status' style='color:white;'>Aktywna </label><label for='page_title' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Tytuł strony</label><input type='text' name='page_title' id='page_title' placeholder='Tytuł strony'><label for='page_content' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kod strony</label><center><textarea type='text' name='page_content' id='page_content' placeholder='Treść strony (HTML)' style='min-width:10%; max-width:99%;'></textarea></center><label for='alias' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Alias</label><input type='text' name='alias' id='alias' placeholder='Alias strony'><div id='przyciski_logowanie'><button id='edit_button' type='submit' formaction='?idp=panel_cms&podstrony' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\")>Wróć</button><button id='edit_button' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button><br></div></form></div></div>'");
+                <link rel='stylesheet' href='css/admin.css'>
+                <script src='js/checkbox.js'></script>
+                <div class='strony'><div class='logowanie'>
+                <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
+                <label for='status' style='padding-bottom:1%; font-size:1.3vw;'>Status strony</label>
+                <input type='checkbox' checked='checked' name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isCheckboxChecked()\">
+                <label id='status_label' for='status' style='color:white;'>Aktywna </label><label for='page_title' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Tytuł strony</label>
+                <input type='text' name='page_title' id='page_title' placeholder='Tytuł strony'><label for='page_content' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kod strony</label>
+                <center><textarea type='text' name='page_content' id='page_content' placeholder='Treść strony (HTML)' style='min-width:10%; max-width:99%;'></textarea></center>
+                <label for='alias' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Alias</label>
+                <input type='text' name='alias' id='alias' placeholder='Alias strony'><div id='przyciski_logowanie'>
+                <button id='edit_button' type='submit' formaction='?idp=panel_cms&podstrony' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\")>Wróć</button>
+                <button id='edit_button' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button>
+                <br></div></form></div></div>'
+            ");
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
 
-                require(dirname(__DIR__, 1). '/cfg.php'); 
+                require(dirname(__DIR__, 1). '/cfg.php');
 
                 $page_title = $_POST['page_title'];
                 $page_content = $_POST['page_content'];
                 $alias = $_POST['alias'];
 
                 $status = 0;
-                    if (isset($_POST['status'])) { 
+                    if (isset($_POST['status'])) {
                         $status = 1;
                     }
                     else {
@@ -106,13 +121,11 @@
                 // header('Location: ?idp=panel_cms&podstrony');
                 echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
             }
-
         }
 
-        if (isset($_GET['edit'])) { // jeżeli chcemy wykonać edycję podstrony - ustawiona jest zmienna 'edit' w linku - wykonuje się ta część kodu
-            
+        function EdytujPodstrone() {
             require(dirname(__DIR__, 1). '/cfg.php');
-            
+
             $id = $_GET['edit'];
             $query = "SELECT * FROM page_list WHERE id=:id LIMIT 1";
             $sth = $dbh->prepare($query);
@@ -121,7 +134,7 @@
             $sth->execute();
 
             while ($row = $sth->fetch()) {  // iteracja po podstronach
-                
+
                 $check = true;
                 if ($row['status'] == 0) {  // sprawdzanie, jaki jest status danej podstrony i ustawiamy na taki sam zmienną $check, żeby móc wyświetlić aktualny status podstrony
                     $check = false;
@@ -135,27 +148,45 @@
                 ");
 
                 if ($check) {
-                    echo("<input type='checkbox' checked name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;' onclick='isCheckboxChecked()'><label id='status_label' for='status' style='color:white;'>Aktywna</label>");
+                    echo("
+                        <input type='checkbox' checked name='status' id='status' style='height: 1vw; width: 1vw; align-self: center;' onclick='isCheckboxChecked()'>
+                        <label id='status_label' for='status' style='color:white;'>Aktywna</label>
+                    ");
                 }
                 else {
-                    echo("<input type='checkbox' name='status' id='status' onclick='isCheckboxChecked()' style='height: 1vw; width: 1vw; align-self: center;'><label id='status_label' for='status' style='color:white;'>Nieaktywna </label>");
+                    echo("
+                        <input type='checkbox' name='status' id='status' onclick='isCheckboxChecked()' style='height: 1vw; width: 1vw; align-self: center;'>
+                        <label id='status_label' for='status' style='color:white;'>Nieaktywna </label>
+                    ");
                 }
-                
+
                 $page_content = $row['page_content'];
                 $page_content = htmlspecialchars($page_content);    // sprawia to, że kod ze znacznikami HTML nie wykonują się
-                 
-                echo ('<link rel="stylesheet" href="css/admin.css"><label for="id" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">ID</label><input type="number" name="id" id="id" disabled value="' . $row['id'] . '"><label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label><input type="text" name="page_title" id="page_title" placeholder="Tytuł" value="' . $row['page_title'] . '"><label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label><center><textarea type="text" name="page_content" id="page_content" placeholder="Treść" style="min-width:10%; max-width:99%;">' . $page_content . '</textarea></center><label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label><input type="text" name="alias" id="alias" placeholder="Alias" value=' . $row['alias'] . '><div id="przyciski_logowanie"><button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button><button id="edit_button" type="submit" name="save" style="margin-top:2%;" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Zapisz</button></form></div></div>');
+
+                echo ('
+                    <link rel="stylesheet" href="css/admin.css"><label for="id" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">ID</label>
+                    <input type="number" name="id" id="id" disabled value="' . $row['id'] . '">
+                    <label for="page_title" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
+                    <input type="text" name="page_title" id="page_title" placeholder="Tytuł" value="' . $row['page_title'] . '">
+                    <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod strony</label>
+                    <center><textarea type="text" name="page_content" id="page_content" placeholder="Treść" style="min-width:10%; max-width:99%;">' . $page_content . '</textarea></center>
+                    <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
+                    <input type="text" name="alias" id="alias" placeholder="Alias" value=' . $row['alias'] . '>
+                    <div id="przyciski_logowanie"><button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'")>Wróć</button>
+                    <button id="edit_button" type="submit" name="save" style="margin-top:2%;" onMouseOver="this.style.color=\'rgb(0,165,0)\'; this.style.fontWeight=\'bold\'" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Zapisz</button>
+                    </form></div></div>
+                ');
 
             }
-                
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
-               
+
                 require_once(dirname(__DIR__, 1). '/cfg.php');
 
                 $page_title = $_POST['page_title'];
                 $page_content = $_POST['page_content'];
                 $alias = $_POST['alias'];
-                    
+
                 $status = 0;
 
                 if (isset($_POST['status'])) {
@@ -173,7 +204,7 @@
                 $sth->bindParam(':status', $status);
                 $sth->bindParam(':alias', $alias);
                 $sth->execute();
-                    
+
                 $_SESSION['success'] = true;
                 $_SESSION['action'] = 'edit';
 
@@ -182,62 +213,68 @@
             }
         }
 
-    if (isset($_GET['del'])) { // jeżeli chcemy usunąć podstronę - ustawiona jest zmienna 'del' w linku - wykonuje się ta część kodu
-        require(dirname(__DIR__, 1) . '/cfg.php');
-        $id = $_GET['del'];
-        // mysqli_query($link, "DELETE FROM page_list WHERE id=:id LIMIT 1");
-        // $sth = $dbh->prepare($query);
-        // $sth->bindParam(':id', $id);
-        // $sth->execute();
+        function UsunPodstrone() {
+            require(dirname(__DIR__, 1) . '/cfg.php');
+            $id = $_GET['del'];
 
-        $query = "SELECT * FROM page_list WHERE id=:id LIMIT 1";
-        $sth = $dbh->prepare($query);
-        $sth->bindParam(':id', $id);
-        $sth->setFetchMode(PDO::FETCH_ASSOC);
-        $sth->execute();
-
-        while ($row = $sth->fetch()) {  // iteracja po podstronach
-            echo ('
-                <link rel="stylesheet" href="css/admin.css">
-                <div class="strony">
-                <div class="logowanie">
-                <form style="display: flex; flex-direction: column; align-items: stretch;" method="post">
-                <label style="padding-bottom:1%; font-size:1.6vw;">Czy na pewno chcesz usunąć podstronę poniżej?</label>
-                <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
-                <input type="text" name="page_title" id="page_title" readonly value=' . $row['page_title'] . '>
-                <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod podstrony</label>
-                <center><textarea type="text" name="page_content" id="page_content" readonly style="min-width:10%; max-width:99%;">' . $row['page_content'] .  '</textarea></center>
-                <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
-                <input type="text" name="alias" id="alias" readonly value=' . $row['alias'] . '>
-                <div id="przyciski_logowanie">
-                <button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'">Wróć</button>
-                <button id="edit_button" name="del_button" type="submit" style="margin-top:4%;" onMouseOver="this.style.color=\'rgb(255,20,60)\'; this.style.fontWeight=\'bold\'" onclick="return confirm(\'Czy chcesz na pewno usunąć kategorię?\')" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Usuń</button></br>
-                </div>
-                </form>
-                </div>
-                </div>
-            ');
-            
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $query = "DELETE FROM page_list WHERE id=:id LIMIT 1";
+            $query = "SELECT * FROM page_list WHERE id=:id LIMIT 1";
             $sth = $dbh->prepare($query);
             $sth->bindParam(':id', $id);
+            $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute();
-            $_SESSION['success'] = true;
-            $_SESSION['action'] = 'del';
-            // header('Location: ?idp=panel_cms&podstrony');
-            echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
-            
+
+            while ($row = $sth->fetch()) {  // iteracja po podstronach
+                echo ('
+                    <link rel="stylesheet" href="css/admin.css">
+                    <div class="strony">
+                    <div class="logowanie">
+                    <form style="display: flex; flex-direction: column; align-items: stretch;" method="post">
+                    <label style="padding-bottom:1%; font-size:1.6vw;">Czy na pewno chcesz usunąć podstronę poniżej?</label>
+                    <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Tytuł strony</label>
+                    <input type="text" name="page_title" id="page_title" readonly value=' . $row['page_title'] . '>
+                    <label for="page_content" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Kod podstrony</label>
+                    <center><textarea type="text" name="page_content" id="page_content" readonly style="min-width:10%; max-width:99%;">' . $row['page_content'] .  '</textarea></center>
+                    <label for="alias" style="padding-top:2%; padding-bottom:1%; font-size:1.3vw;">Alias</label>
+                    <input type="text" name="alias" id="alias" readonly value=' . $row['alias'] . '>
+                    <div id="przyciski_logowanie">
+                    <button id="edit_button" type="submit" formaction="?idp=panel_cms&podstrony" style="margin-top:4%;" onMouseOver="this.style.fontWeight=\'bold\'" onMouseOut="this.style.fontWeight=\'normal\'">Wróć</button>
+                    <button id="edit_button" name="del_button" type="submit" style="margin-top:4%;" onMouseOver="this.style.color=\'rgb(255,20,60)\'; this.style.fontWeight=\'bold\'" onclick="return confirm(\'Czy chcesz na pewno usunąć kategorię?\')" onMouseOut="this.style.color=\'rgb(0,0,0)\'; this.style.fontWeight=\'normal\'">Usuń</button>
+                    </br>
+                    </div>
+                    </form>
+                    </div>
+                    </div>
+                ');
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli formularz został zatwierdzony
+
+                $query = "DELETE FROM page_list WHERE id=:id LIMIT 1";
+                $sth = $dbh->prepare($query);
+                $sth->bindParam(':id', $id);
+                $sth->execute();
+                $_SESSION['success'] = true;
+                $_SESSION['action'] = 'del';
+                // header('Location: ?idp=panel_cms&podstrony');
+                echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
+            }
         }
-    }
+
+        if (isset($_GET['add'])) {  // jeżeli chcemy wykonać dodawanie podstrony - ustawiona jest zmienna 'add' w linku - wykonuje się ta część kodu
+            DodajPodstrone();
+        }
+
+        if (isset($_GET['edit'])) { // jeżeli chcemy wykonać edycję podstrony - ustawiona jest zmienna 'edit' w linku - wykonuje się ta część kodu
+            EdytujPodstrone();
+        }
+
+        if (isset($_GET['del'])) { // jeżeli chcemy usunąć podstronę - ustawiona jest zmienna 'del' w linku - wykonuje się ta część kodu
+            UsunPodstrone();
+        }
 
 
-    if (!(isset($_GET['add']) || isset($_GET['edit']) || isset($_GET['del'])))  // podstrony wyświetlą się tylko jeżeli nie będziemy w podstronie "edytującej" daną podstronę. 
+    if (!(isset($_GET['add']) || isset($_GET['edit']) || isset($_GET['del'])))  // podstrony wyświetlą się tylko jeżeli nie będziemy w podstronie "edytującej" daną podstronę.
         ListaPodstron();    // wyświetlanie podstron funkcją
-    
 }
 
     else {  // wykonuje się, gdy osoba nie ma dostępu do panelu CMS

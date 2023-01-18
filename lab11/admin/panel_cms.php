@@ -9,19 +9,18 @@
     OutOfProducts();
     ProductIsFine();
 
-    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true && $_SESSION['logged'] === true) {
-
+    function WyswietlPanelAdmina() {
         if (isset($_GET['podstrony'])) {
             require_once('admin/podstrony.php');
-        } 
+        }
 
         elseif (isset($_GET['kategorie'])) {
             require_once('admin/kategorie.php');
-        } 
+        }
 
         elseif (isset($_GET['produkty'])) {
             require_once('admin/produkty.php');
-        } 
+        }
 
         else {
             echo ('
@@ -45,19 +44,15 @@
             }
     }
 
-    elseif ($_SESSION['logged'] === true) {
-        // echo('
-        //     <link rel="stylesheet" href="css/admin.css">
-        //     <div class="logowanie">
-        //         <h1 class="brak_autoryzacji">Nie masz tutaj dostępu!</h1>
-        //         <button><a class="logowanie" href="?idp=">Powróć na stronę główną</a></button>
-        //     </div>
-        // ');
-        // header("Location: ?idp=");
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true && $_SESSION['logged'] === true) {
+        WyswietlPanelAdmina();
+    }
+
+    elseif (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {   // przekierowujemy użytkownika bezpośrednio na stronę główną
         echo "<script> window.location.href='?idp=';</script>";
     }
 
-    else {  // wykonuje się, gdy osoba nie ma dostępu do panelu CMS
+    else {  // wykonuje się, gdy osoba nie ma dostępu do panelu CMS i nie jest zalogowana
         echo('
             <link rel="stylesheet" href="css/admin.css">
             <div class="logowanie">
@@ -66,5 +61,5 @@
             </div>
         ');
     }
-    
+
 ?>

@@ -10,28 +10,28 @@
 
     function PokazKontakt() {   // funkcja zwracająca formularz kontaktowy
         return ('
-        <script src="js/kolorujtlo.js"></script>
-        <link rel="stylesheet" href="css/form.css">
-        <form name="formularz_kontaktowy" class="formularz_kontaktowy" action="contact.php" method="post">
-            <label class="label_kontakt" for="input_email" >E-mail:</label><input id="input_email" type="email" name="email" value="" required="required"> <br>
-            <label class="label_kontakt" for="input_imie_i_nazwisko" >Imię i nazwisko:</label><input id="input_imie_i_nazwisko" type="text" name="name" value="" required="required" pattern="(\p{L}+\s)(\p{L}+)"> <br>
-            <label class="label_kontakt" for="input_temat" >Temat:</label><input id="input_temat" type="text" name="subject" value="" required="required" pattern="[\p{L}]{,1}"> <br>
-            <label class="label_kontakt" for="input_wiadomosc" >Treść:</label><textarea id="input_wiadomosc" type="text" name="message" value="" required="required" pattern="[A-Za-z0-9]{1,}"></textarea><br>
-            <div class="przyciski">
-                <span id="przycisk_span_lewy">
-                    <label class="przycisk_label_kontakt" for="przycisk_wyslij">Prześlij wiadomość:</label>
-                    <button id="przycisk_wyslij" name="send" type="submit">Prześlij</button>
-                </span>
+            <script src="js/kolorujtlo.js"></script>
+            <link rel="stylesheet" href="css/form.css">
+            <form name="formularz_kontaktowy" class="formularz_kontaktowy" action="contact.php" method="post">
+                <label class="label_kontakt" for="input_email" >E-mail:</label><input id="input_email" type="email" name="email" value="" required="required"> <br>
+                <label class="label_kontakt" for="input_imie_i_nazwisko" >Imię i nazwisko:</label><input id="input_imie_i_nazwisko" type="text" name="name" value="" required="required" pattern="(\p{L}+\s)(\p{L}+)"> <br>
+                <label class="label_kontakt" for="input_temat" >Temat:</label><input id="input_temat" type="text" name="subject" value="" required="required" pattern="[\p{L}]{,1}"> <br>
+                <label class="label_kontakt" for="input_wiadomosc" >Treść:</label><textarea id="input_wiadomosc" type="text" name="message" value="" required="required" pattern="[A-Za-z0-9]{1,}"></textarea><br>
+                <div class="przyciski">
+                    <span id="przycisk_span_lewy">
+                        <label class="przycisk_label_kontakt" for="przycisk_wyslij">Prześlij wiadomość:</label>
+                        <button id="przycisk_wyslij" name="send" type="submit">Prześlij</button>
+                    </span>
 
-                <span id="przycisk_span_prawy">
-                    <label class="przycisk_label_kontakt" for="przycisk_wyczysc">Wyczyść pola:</label>
-                    <button id="przycisk_wyczysc" name="wyczysc" type="button" onclick="wyczysc_inputy(formularz_kontaktowy)">Wyczyść</button>
-                </span>
-		    </div>
-        </form>
+                    <span id="przycisk_span_prawy">
+                        <label class="przycisk_label_kontakt" for="przycisk_wyczysc">Wyczyść pola:</label>
+                        <button id="przycisk_wyczysc" name="wyczysc" type="button" onclick="wyczysc_inputy(formularz_kontaktowy)">Wyczyść</button>
+                    </span>
+                </div>
+            </form>
         ');
     }
-    
+
 
     function WyslijMailKontakt($nadawca, $nazwa_nadawcy, $odbiorca, $temat, $tresc) {   // funkcja która wysyła maila od danego nadawcy do danego odbiorcy z danymi tematem i treścią 
         $mail = new PHPMailer(true);
@@ -68,11 +68,11 @@
 
     function PrzypomnijHaslo() {    // funkcja ta w domyśle ma wysyłać maila z hasłem do osoby, która prosi o jego przypomnienie
         WyslijMailKontakt('progappwwwmailer@gmail.com', 'Przypomnienie hasla', 'progappwwwmailer@gmail.com', 'Przypomnienie hasla', '<center>Oto Twoje dane:<br/>Login: admin<br/>Haslo: admin');
+        // na razie wysyła tylko do administratora
     }
 
     function PokazPrzypomnijHaslo(){    // funkcja wysyłająca mail z hasłem poprzez działanie f-cji PrzypomnijHaslo() i zwracająca podstronę z wiadomością o powodzeniu akcji.
         if (($_GET['idp'] == 'przypomnij_haslo')) {
-            
             PrzypomnijHaslo();
 
             return ('
@@ -85,7 +85,6 @@
                     </div>
                 </div>
             ');
-            
         }
     }
 ?>

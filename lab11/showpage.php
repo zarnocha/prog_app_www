@@ -2,16 +2,16 @@
 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL); 
+    error_reporting(E_ALL);
 
-    // funkcja jako argument przyjmuje alias, który jest wyszukiwany w bazie danych
+    // Funkcja jako argument przyjmuje alias, który jest wyszukiwany w bazie danych
     // jeżeli argument jest pusty, to pokazywana jest strona główna.
     // jeżeli strony nie da się znaleźć w bazie danych, bądź jej status == 0: pokazywany jest napis "Nie znaleziono strony".
 
-    function pokazPodstrone($alias) {   
+    function pokazPodstrone($alias) {
         require 'cfg.php';
 
-        if (empty($alias)) 
+        if (empty($alias))
             $alias = 'glowna';
 
         $alias_clear = htmlspecialchars($alias);
@@ -22,14 +22,14 @@
         $sth->setFetchMode(PDO::FETCH_ASSOC);
         $sth->execute();
         $row = $sth->fetch();
-        
-        if(empty($row['alias']) or ($row['status'] == 0))  
-            $web = '<div class="czas"><center>[nie_znaleziono_strony]</center></div>';
 
-        else 
-            $web = $row['page_content'];
+        if(empty($row['alias']) or ($row['status'] == 0))
+            $page = '<div class="czas"><center>[nie_znaleziono_strony]</center></div>';
 
-        return $web;
+        else
+            $page = $row['page_content'];
+
+        return $page;
     }
 
 ?>

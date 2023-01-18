@@ -1,4 +1,4 @@
-<!-- version: 1.9 -->
+<!-- version: 1.10 -->
 
 <?php
 	mb_internal_encoding('UTF-8');
@@ -7,13 +7,13 @@
 	include 'showpage.php';
 	session_start();
 
-	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING); 
+	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 	if ($_GET['idp'] == 'kontakt') {	// jeżeli w zmiennej idp będzie "kontakt", to wyświetlamy podstronę "kontakt" z pliku contact.php
 		require('contact.php');
 		session_start();
 		$strona = PokazKontakt();
-	} 
+	}
 
 	elseif ($_GET['idp'] == 'login') {	// jeżeli w zmiennej idp będzie "login", to wyświetlamy formularz logowania z pliku login.php
 		require_once('admin/login.php');
@@ -30,11 +30,11 @@
 			echo "<script> window.location.href='?idp=';</script>";
 		}
 	}
-	
+
 	elseif ($_GET['idp'] == 'panel_cms') {	// jeśli w zmiennej idp będzie "panel_cms" to na razie nie wykonujemy żadnego działania
 		;
 	}
-	
+
 	elseif ($_GET['idp'] == 'przypomnij_haslo') {	// jeżeli w zmiennej idp będzie "przypomnij_haslo" to używany jest plik contact.php a wyświetlaną stroną zostaje informacja o przypomnieniu hasła
 		require('contact.php');
 		$strona = PokazPrzypomnijHaslo();
@@ -44,12 +44,12 @@
 		require('admin/login.php');
 		Wyloguj();
 	}
-	
+
 
 	else {	// w kazdym innym przypadku (jeżeli dana podstrona nie może być znaleziona w bazie) wyświetlona będzie strona główna
 		$strona = pokazPodstrone($_GET['idp']);
 	}
-	
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +62,7 @@
 	<title>Piłka nożna moim hobby</title>
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="img/football_logo.png" type="image/png">
-	
+
 	<!-- Dodawanie czcionki z Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,7 +136,7 @@
 			require_once('admin/panel_cms.php');
 		}
 
-		else 
+		else
 			echo htmlspecialchars_decode($strona);
 
 		$nr_indeksu = "162686";
