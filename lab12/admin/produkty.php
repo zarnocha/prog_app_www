@@ -75,8 +75,6 @@
                 echo "Brak wyników";
             }
 
-
-
         }
 
         function DodajProdukt() {
@@ -89,9 +87,20 @@
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute();
 
-            echo ("<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script><div class='strony' style='width:80%;'><p id='dodaj' style='font-size:1.6vw;'><b>Dodawanie</b> produktu</p><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>");
-            echo ("<input type='text' name='product_name' id='product_name' placeholder='Nazwa produktu' ><label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis przedmiotu</label><center>");
-            echo("<textarea type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'></textarea></center><label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label><input type='datetime-local' name='expiration_date' id='expiration_date'><label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label><input type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto' ><label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)' ><label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label><input type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość' ><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input type='checkbox' checked='checked' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isProductAvailable();\"><label id='availability_text' for='status' style='color:white;'>Tak</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label><select name='category_select' id='category_select'>");
+            echo ("
+                <link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script><div class='strony' style='width:80%;'><p id='dodaj' style='font-size:1.6vw;'><b>Dodawanie</b> produktu</p>
+                <div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>
+                <input type='text' name='product_name' id='product_name' placeholder='Nazwa produktu' ><label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis przedmiotu</label>
+                <center><textarea type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'></textarea></center>
+                <label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label>
+                <input type='datetime-local' name='expiration_date' id='expiration_date'><label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label>
+                <input type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto' ><label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label>
+                <input type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)' ><label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label>
+                <input type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość' ><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label>
+                <input type='checkbox' checked='checked' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"isProductAvailable();\">
+                <label id='availability_text' for='status' style='color:white;'>Tak</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label>
+                <select name='category_select' id='category_select'>
+            ");
 
 
             while ($row = $sth->fetch()) {
@@ -294,7 +303,7 @@
                     <link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script>
                     <div class='strony'>
                     <p id='dodaj' style='font-size:1.6vw;'><b>Szczegóły</b> produktu</p>
-                    <div class='logowanie'>
+                    <div class='tlo'>
                     <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
                     <label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>
                     <input readonly type='text' name='product_name' id='product_name' placeholder='Nazwa produktu'  value='" . $row['product_name'] . "'>
@@ -322,8 +331,7 @@
                 $second_sth->execute();
                 $second_row = $second_sth->fetchAll();
 
-                echo ('
-                     -> ' . $second_row[0]['name']. "'>
+                echo (' -> ' . $second_row[0]['name']. "'>
                     <label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label>
                     <input readonly type='text' name='category_select' id='category_select' placeholder='Gabaryty produktu' style='width:15vw;' value='" . $row['size'] . "'</input>
                 ");

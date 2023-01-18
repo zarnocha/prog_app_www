@@ -43,8 +43,12 @@
 	elseif ($_GET['idp'] == 'wyloguj') {	// jeżeli w zmiennej idp będzie "wyloguj" to używana jest funkcja Wyloguj() z pliku login.php, użytkownik zostaje wylogowany a nastepnie wyświetlana jest strona główna.
 		require('admin/login.php');
 		Wyloguj();
+
 	}
 
+	elseif ($_GET['idp'] == 'sklep') {	// jeśli w zmiennej idp będzie "sklep" to na razie nie wykonujemy żadnego działania
+		;
+	}
 
 	else {	// w kazdym innym przypadku (jeżeli dana podstrona nie może być znaleziona w bazie) wyświetlona będzie strona główna
 		$strona = pokazPodstrone($_GET['idp']);
@@ -90,16 +94,32 @@
 
 				if (isset($_SESSION['login']) && isset($_SESSION['password'])) {	// jeżeli są ustawione login i hasło
 					if ($_SESSION['logged'] === true) {	// jeżeli jest zalogowany
+
+						if (isset($_GET['koszyk'])) {
+							$czyZalogowany = '<a href="?idp=sklep">Sklep</a></br>';
+						}
+
+						elseif ($_GET['idp'] == 'sklep' && !(isset($_GET['koszyk'])) && !(isset($_GET['details']))) {
+							$czyZalogowany = '<a href="?idp=sklep&koszyk">Koszyk</a></br>';
+						}
+
+						else {
+							$czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk</a></br>';
+						}
+
+						// $czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk</a></br>';
+
 						if ($_SESSION['auth'] === true) {
 							if ($_GET['idp'] == 'panel_cms') {	// jeżeli jesteśmy w panelu cms
-								$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
+								$czyZalogowany = $czyZalogowany . '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// to wyświetlamy tylko przycisk od wylogowywania się
 							}
 							else
-								$czyZalogowany = '<a href="?idp=panel_cms">Panel CMS</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza panelem CMS - dodajemy do niego przycisk
+								$czyZalogowany = $czyZalogowany . '<a href="?idp=panel_cms">Panel CMS</a></br><a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj">Wyloguj się';	// jeżeli jesteśmy poza panelem CMS - dodajemy do niego przycisk
 						}
 						else {
-							$czyZalogowany = '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// wyświetlamy tylko przycisk od wylogowywania się
+							$czyZalogowany =  $czyZalogowany . '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// wyświetlamy tylko przycisk od wylogowywania się
 						}
+
 					}
 				}
 				else
@@ -134,6 +154,10 @@
 
 		if ($_GET['idp'] == 'panel_cms') {
 			require_once('admin/panel_cms.php');
+		}
+
+		elseif ($_GET['idp'] == 'sklep') {
+			require_once('sklep.php');
 		}
 
 		else
