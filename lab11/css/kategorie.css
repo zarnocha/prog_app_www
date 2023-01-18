@@ -154,15 +154,3 @@
     text-align: center;
 }
 
-.kolumna_przedmiotu {
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.kreska_przedmiotu {
-    color: rgb(27, 212, 42);
-    font-size: 4vw;
-    width: 1%;
-}

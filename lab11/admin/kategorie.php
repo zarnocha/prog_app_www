@@ -152,11 +152,26 @@
             $id = $_GET['add'];
             // To echo wygląda w ten sposób, ponieważ nie działało przekierowywanie przez header('Location:')
             echo("
-                <link rel='stylesheet' href='css/kategorie.css'><script src='js/checkbox.js'></script><div class='strony'><p id='dodaj' style='font-size:1.6vw;'>Dodawanie kategorii</p><div class='logowanie'><form style='display: flex; flex-direction: column; align-items: stretch;' method='post'><label for='category_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa kategorii</label><input type='text' name='category_name' id='category_name' placeholder='Nazwa kategorii' required=required><label for='master' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria-matka</label><input type='text' name='master' id='master' placeholder='Zostaw puste, jeżeli to kategoria główna'><div id='przyciski'><button id='przycisk' type='submit' formaction='?idp=panel_cms&podstrony' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\")>Wróć</button><button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button><br></div></form></div></div>'");
+                <link rel='stylesheet' href='css/kategorie.css'><script src='js/checkbox.js'></script>
+                <div class='strony'>
+                <p id='dodaj' style='font-size:1.6vw;'>Dodawanie kategorii</p>
+                <div class='logowanie'>
+                <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
+                <label for='category_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa kategorii</label><input type='text' name='category_name' id='category_name' placeholder='Nazwa kategorii'>
+                <label for='master' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria-matka</label><input type='text' name='master' id='master' placeholder='Zostaw puste, jeżeli to kategoria główna'>
+                <div id='przyciski'>
+                <button id='przycisk' type='submit' formaction=\"?idp=panel_cms&podstrony\" onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button>
+                <button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button>
+                <br>
+                </div>
+                </form>
+                </div>
+                </div>'
+            ");
     
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
     
-                require(dirname(__DIR__, 1). '/cfg.php'); 
+                require(dirname(__DIR__, 1). '/cfg.php');
     
                 $category_name = $_POST['category_name'];
                 $master = $_POST['master'];
@@ -212,7 +227,7 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {    // jeżeli przesyłamy formularz - wykonuje się ta część kodu
                
                 require_once(dirname(__DIR__, 1). '/cfg.php');
-                
+
                 $id = $_GET['edit'];
                 $category_name = $_POST['category_name'];
                 $master = $_POST['master'];

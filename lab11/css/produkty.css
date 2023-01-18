@@ -52,7 +52,7 @@
 
 #product_description {
     font-family: 'Raleway';
-    /* width: 7vw; */
+    width: 7vw;
     /* padding-bottom: 1%; */
     font-size: 1vw;
     max-width:inherit;
@@ -111,7 +111,7 @@
     /* width: 7vw; */
     /* padding-bottom: 1%; */
     font-size: 1vw;
-    width: max-content;
+    width: 8vw;
     align-self: center;
     text-align: center;
 }
@@ -129,6 +129,7 @@
     font-size: 1vw;
     width: max-content;
     align-self: center;
+    text-align: center;
 }
 
 #size {
@@ -138,6 +139,43 @@
     font-size: 1vw;
     width: max-content;
     align-self: center;
+}
+
+.kolumna_przedmiotu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kreska_przedmiotu {
+    color: rgb(27, 212, 42);
+    font-size: 4vw;
+    width: 1%;
+}
+
+
+#dodaj:hover {
+    color: rgb(52, 216, 52);
+}
+
+#edytuj {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+#usun {
+    display: flex;
+    padding: 0;
+}
+
+#edytuj:hover {
+    color: rgb(52, 216, 52);
+}
+
+#usun:hover {
+    color: rgb(52, 216, 52);
 }
 
 #input_picture {
@@ -187,3 +225,8 @@
     width: 1px;
     height: 1px;
 }
+
+#nazwa_przedmiotu_do_przenoszenia:hover {
+    color: rgb(52, 216, 52);
+}
+
