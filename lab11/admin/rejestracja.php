@@ -41,7 +41,7 @@
         $password = $_POST['register_pass'];
 
         $options = [
-            'cost' => 11  
+            'cost' => 11,
         ];
         
         $password = password_hash($password, PASSWORD_BCRYPT, $options);
@@ -57,7 +57,8 @@
 
     if (isset($_SESSION['registered']) && $_SESSION['registered'] === true) {
         unset($_SESSION['registered']);
-        header('Location: ?idp=login');
+        // header('Location: ?idp=login');
+        echo "<script> window.location.href='?idp=login';</script>";
     }
     
 ?>

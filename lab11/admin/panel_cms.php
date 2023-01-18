@@ -53,7 +53,8 @@
         //         <button><a class="logowanie" href="?idp=">Powróć na stronę główną</a></button>
         //     </div>
         // ');
-        header("Location: ?idp=");
+        // header("Location: ?idp=");
+        echo "<script> window.location.href='?idp=';</script>";
     }
 
     else {  // wykonuje się, gdy osoba nie ma dostępu do panelu CMS

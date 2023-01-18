@@ -64,21 +64,24 @@
             }
 
             $_SESSION['success'] = false;
-            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=panel_cms');  // przeniesienie użytkownika z panelu logowania do panelu CMS
+            // header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '?idp=panel_cms');  // przeniesienie użytkownika z panelu logowania do panelu CMS
+                    echo "<script> window.location.href='?idp=panel_cms';</script>";
         }
 
         else {
             unset($_SESSION['login']);
             unset($_SESSION['password']);
             $_SESSION['auth'] = false;
-            header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=panel_cms');
+            // header('Location: http://'. $_SERVER['HTTP_HOST'] . '/'. basename(dirname(__DIR__)) . '/?idp=panel_cms');
+                    echo "<script> window.location.href='?idp=panel_cms';</script>";
         }
     }
 
 
     function Wyloguj() {    // funkcja służąca do usuwania sesji - w tym usunięciu danych logowania - i powrotu do strony głównej
         session_destroy();
-        header('Location: ?idp=');
+        // header('Location: ?idp=');
+        echo "<script> window.location.href='?idp=';</script>";
     }
 
 ?>

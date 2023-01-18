@@ -26,7 +26,8 @@
 			$strona = FormularzRejestracji();
 		}
 		else {	// jeżeli użytkownik jest zalogowany, to nie będzie miał dostępu do rejestracji
-			header("Location: ?idp=");
+			// header("Location: ?idp=");
+			echo "<script> window.location.href='?idp=';</script>";
 		}
 	}
 	

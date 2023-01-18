@@ -103,7 +103,8 @@
 
                 $_SESSION['success'] = true;
                 $_SESSION['action'] = 'add';
-                header('Location: ?idp=panel_cms&podstrony');
+                // header('Location: ?idp=panel_cms&podstrony');
+                echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
             }
 
         }
@@ -176,7 +177,8 @@
                 $_SESSION['success'] = true;
                 $_SESSION['action'] = 'edit';
 
-                header('Location: ?idp=panel_cms&podstrony');
+                // header('Location: ?idp=panel_cms&podstrony');
+                echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
             }
         }
 
@@ -226,7 +228,8 @@
             $sth->execute();
             $_SESSION['success'] = true;
             $_SESSION['action'] = 'del';
-            header('Location: ?idp=panel_cms&podstrony');
+            // header('Location: ?idp=panel_cms&podstrony');
+            echo "<script> window.location.href='?idp=panel_cms&podstrony';</script>";
             
         }
     }
