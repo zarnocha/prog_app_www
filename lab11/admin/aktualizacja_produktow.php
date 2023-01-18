@@ -31,7 +31,7 @@
         foreach($result as &$row) {
             $second_query = "UPDATE product_list SET availability=:availability WHERE id=:id LIMIT 100";
             $second_sth = $dbh->prepare($second_query);
-            $second_sth->bindValue(':availability', '1');
+            $second_sth->bindValue(':availability', '0');
             $id = $row['id'];
             $second_sth->bindValue(':id', $id);
             $second_sth->execute();
