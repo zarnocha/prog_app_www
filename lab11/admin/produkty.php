@@ -286,30 +286,31 @@
 
             while ($row = $sth->fetch()) {
                 $check = ($row['availability'] == 1 ? true : false);
-                echo "<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script>
-                <div class='strony'>
-                <p id='dodaj' style='font-size:1.6vw;'><b>Szczegóły</b> produktu</p>
-                <div class='logowanie'>
-                <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
-                <label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>";
-                echo "<input readonly type='text' name='product_name' id='product_name' placeholder='Nazwa produktu'  value='" . $row['product_name'] . "'>
-                <label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis produktu</label>";
-                echo "<center><textarea readonly type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'>";
-                echo $row['product_description']."</textarea></center>
-                <label for='creation_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data utworzenia</label>
-                <input readonly type='datetime-local' name='creation_date' id='expiration_date' value='".$row['creation_date']."'>
-                <label for='modification_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data ostatniej modyfikacji</label>
-                <input readonly type='datetime-local' name='modification_date' id='expiration_date' value='".$row['modification_date']."'>
-                <label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label>
-                <input readonly type='datetime-local' name='expiration_date' id='expiration_date' value='".$row['expiration_date']."'>
-                <label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label>";
-                echo "<input readonly type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto'  value='" . $row['net_price'] . "'>
-                <label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input readonly type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)'  value='" . ($row['vat'] - 1) * 100 . "'>
-                <label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label>
-                <input readonly type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość'  value='" . $row['quanity'] . "'><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input readonly type='checkbox' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"return false;\"". ($check ? 'checked' : "") . " >
-                <label id='availability_text' for='status' style='color:white;'>". ($check == 1 ? 'Tak' : "Nie") ."</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label>
-                <input readonly type='text' name='category_select' id='category_select' placeholder='Nazwa produktu' style='width:15vw;' value='" . $row['category_id']
-                ;
+
+                echo ("
+                    <link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script>
+                    <div class='strony'>
+                    <p id='dodaj' style='font-size:1.6vw;'><b>Szczegóły</b> produktu</p>
+                    <div class='logowanie'>
+                    <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
+                    <label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>
+                    <input readonly type='text' name='product_name' id='product_name' placeholder='Nazwa produktu'  value='" . $row['product_name'] . "'>
+                    <label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis produktu</label>
+                    <center><textarea readonly type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'>" . $row['product_description']."</textarea></center>
+                    <label for='creation_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data utworzenia</label>
+                    <input readonly type='datetime-local' name='creation_date' id='expiration_date' value='".$row['creation_date']."'>
+                    <label for='modification_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data ostatniej modyfikacji</label>
+                    <input readonly type='datetime-local' name='modification_date' id='expiration_date' value='".$row['modification_date']."'>
+                    <label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label>
+                    <input readonly type='datetime-local' name='expiration_date' id='expiration_date' value='".$row['expiration_date']."'>
+                    <label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label>
+                    <input readonly type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto'  value='" . $row['net_price'] . "'>
+                    <label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input readonly type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)'  value='" . ($row['vat'] - 1) * 100 . "'>
+                    <label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label>
+                    <input readonly type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość'  value='" . $row['quanity'] . "'><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input readonly type='checkbox' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"return false;\"". ($check ? 'checked' : "") . " >
+                    <label id='availability_text' for='status' style='color:white;'>". ($check == 1 ? 'Tak' : "Nie") ."</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label>
+                    <input readonly type='text' name='category_select' id='category_select' placeholder='Nazwa produktu' style='width:15vw;' value='" . $row['category_id']
+                );
 
                 $second_query = "SELECT * FROM category_list WHERE id=:category_id LIMIT 100";
                 $second_sth = $dbh->prepare($second_query);
@@ -317,23 +318,26 @@
                 $second_sth->setFetchMode(PDO::FETCH_ASSOC);
                 $second_sth->execute();
                 $second_row = $second_sth->fetchAll();
-                echo ' -> ' . $second_row[0]['name']. "'>
-                <label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label>
-                <input readonly type='text' name='category_select' id='category_select' placeholder='Gabaryty produktu' style='width:15vw;' value='" . $row['size'] . "'</input>
-                ";
+
+                echo ('
+                     -> ' . $second_row[0]['name']. "'>
+                    <label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label>
+                    <input readonly type='text' name='category_select' id='category_select' placeholder='Gabaryty produktu' style='width:15vw;' value='" . $row['size'] . "'</input>
+                ");
 
                 if (!(empty($row['picture'])))
                 {
-                    echo("<label for='picture' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Zdjęcie produktu</label>
-                          <center><img id='img' style='width: 150px;height: 150px' src=" . $row['picture'] . "></center>
-                          <input style='display:none;' type='text' id='b64' name='base64_img' />
+                    echo("
+                        <label for='picture' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Zdjęcie produktu</label>
+                        <center><img id='img' style='width: 150px;height: 150px' src=" . $row['picture'] . "></center>
+                        <input style='display:none;' type='text' id='b64' name='base64_img' />
                     ");
                 }
-                echo "
+                echo ("
                     <div id='przyciski'>
                     <button id='przycisk' type='submit' formaction='?idp=panel_cms&produkty' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button>
                     <br></div></form></div></div>
-                ";
+                ");
             }
         }
 
@@ -349,31 +353,31 @@
 
             while ($row = $sth->fetch()) {
                 $check = ($row['availability'] == 1 ? true : false);
-                echo "<link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script>
-                <div class='strony'>
-                <p id='dodaj' style='font-size:1.6vw;'><b>Usuwanie</b> przedmiotu</p>
-                <div class='logowanie'>
-                <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
-                <label style='padding-bottom:1%; font-size:1.6vw;'>Czy na pewno chcesz usunąć przedmiot poniżej?</label>
-                <label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>";
-                echo "<input readonly type='text' name='product_name' id='product_name' placeholder='Nazwa produktu'  value='" . $row['product_name'] . "'>
-                <label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis produktu</label>";
-                echo "<center><textarea readonly type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'>";
-                echo $row['product_description']."</textarea></center>
-                <label for='creation_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data utworzenia</label>
-                <input readonly type='datetime-local' name='creation_date' id='expiration_date' value='".$row['creation_date']."'>
-                <label for='modification_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data ostatniej modyfikacji</label>
-                <input readonly type='datetime-local' name='modification_date' id='expiration_date' value='".$row['modification_date']."'>
-                <label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label>
-                <input readonly type='datetime-local' name='expiration_date' id='expiration_date' value='".$row['expiration_date']."'>
-                <label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label>";
-                echo "<input readonly type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto'  value='" . $row['net_price'] . "'>
-                <label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input readonly type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)'  value='" . ($row['vat'] - 1) * 100 . "'>
-                <label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label>
-                <input readonly type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość'  value='" . $row['quanity'] . "'><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input readonly type='checkbox' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"return false;\"". ($check ? 'checked' : "") . " >
-                <label id='availability_text' for='status' style='color:white;'>". ($check == 1 ? 'Tak' : "Nie") ."</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label>
-                <input readonly type='text' name='category_select' id='category_select' placeholder='Nazwa produktu' style='width:15vw;' value='" . $row['category_id']
-                ;
+                echo ("
+                    <link rel='stylesheet' href='css/produkty.css'><script src='js/availability.js'></script>
+                    <div class='strony'>
+                    <p id='dodaj' style='font-size:1.6vw;'><b>Usuwanie</b> przedmiotu</p>
+                    <div class='logowanie'>
+                    <form style='display: flex; flex-direction: column; align-items: stretch;' method='post'>
+                    <label style='padding-bottom:1%; font-size:1.6vw;'>Czy na pewno chcesz usunąć przedmiot poniżej?</label>
+                    <label for='product_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa produktu</label>
+                    <input readonly type='text' name='product_name' id='product_name' placeholder='Nazwa produktu'  value='" . $row['product_name'] . "'>
+                    <label for='product_description' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Opis produktu</label>
+                    <center><textarea readonly type='text' name='product_description' id='product_description' placeholder='Opis produktu' style='min-width:10%; max-width:99%;'>" . $row['product_description']."</textarea></center>
+                    <label for='creation_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data utworzenia</label>
+                    <input readonly type='datetime-local' name='creation_date' id='expiration_date' value='".$row['creation_date']."'>
+                    <label for='modification_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data ostatniej modyfikacji</label>
+                    <input readonly type='datetime-local' name='modification_date' id='expiration_date' value='".$row['modification_date']."'>
+                    <label for='expiration_date' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Data wygaśnięcia</label>
+                    <input readonly type='datetime-local' name='expiration_date' id='expiration_date' value='".$row['expiration_date']."'>
+                    <label for='net_price' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Cena netto</label>
+                    <input readonly type='number' min='0.01' step='0.01' name='net_price' id='net_price' placeholder='Cena netto'  value='" . $row['net_price'] . "'>
+                    <label for='vat' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>VAT (%)</label><input readonly type='number' min='0' max='100' step='1' name='vat' id='vat' placeholder='VAT (%)'  value='" . ($row['vat'] - 1) * 100 . "'>
+                    <label for='quanity' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Ilość</label>
+                    <input readonly type='number' min='0' step='1' name='quanity' id='quanity' placeholder='Ilość'  value='" . $row['quanity'] . "'><label for='availability' style='padding-bottom:1%; padding-top: 2%; font-size:1.3vw;'>Czy dostępny?</label><input readonly type='checkbox' name='availability' id='availability' style='height: 1vw; width: 1vw; align-self: center;' onclick=\"return false;\"". ($check ? 'checked' : "") . " >
+                    <label id='availability_text' for='status' style='color:white;'>". ($check == 1 ? 'Tak' : "Nie") ."</label><label for='category_select' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria produktu</label>
+                    <input readonly type='text' name='category_select' id='category_select' placeholder='Nazwa produktu' style='width:15vw;' value='" . $row['category_id']
+                );
 
                 $second_query = "SELECT * FROM category_list WHERE id=:category_id LIMIT 100";
                 $second_sth = $dbh->prepare($second_query);
@@ -381,12 +385,13 @@
                 $second_sth->setFetchMode(PDO::FETCH_ASSOC);
                 $second_sth->execute();
                 $second_row = $second_sth->fetchAll();
-                echo ' -> ' . $second_row[0]['name']. "'>
-                <label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label>
-                <input readonly type='text' name='category_select' id='category_select' placeholder='Gabaryty produktu' style='width:15vw;' value='" . $row['size'] . "'</input>
+                echo '
+                     -> ' . $second_row[0]['name']. "'>
+                    <label for='size' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Gabaryty produktu</label>
+                    <input readonly type='text' name='category_select' id='category_select' placeholder='Gabaryty produktu' style='width:15vw;' value='" . $row['size'] . "'</input>
                 ";
 
-                if (!(empty($row['picture'])))
+                if (!(empty($row['picture'])))  // jeżeli jest zdjęcie
                 {
                     echo("
                         <label for='picture' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Zdjęcie produktu</label>
@@ -394,11 +399,13 @@
                         <input style='display:none;' type='text' id='b64' name='base64_img' />
                     ");
                 }
-                echo "<div id='przyciski'>
+                // jeżeli nie ma zdjęcia
+                echo ("
+                    <div id='przyciski'>
                     <button id='przycisk' type='submit' formaction='?idp=panel_cms&produkty' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button>
                     <button id='przycisk' name='del_button' type='submit' onMouseOver=\"this.style.color=rgb(255,20,60); this.style.fontWeight=bold\" onclick=\"return confirm('Czy chcesz na pewno usunąć przedmiot?')\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\">Usuń</button>
                     </div></form></div></div>
-                ";
+                ");
 
             }
 
