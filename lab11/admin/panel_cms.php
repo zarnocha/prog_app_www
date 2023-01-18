@@ -4,6 +4,11 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    include('aktualizacja_produktow.php');
+    OutdatedProducts();
+    OutOfProducts();
+    ProductIsFine();
+
     if (isset($_SESSION['auth']) && $_SESSION['auth'] === true && $_SESSION['logged'] === true) {
 
         if (isset($_GET['podstrony'])) {

@@ -3,6 +3,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     date_default_timezone_set("Europe/Warsaw");
+
     if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {   // weryfikacja, czy użytkownik jest zalogowany, aby mieć dostęp do CMS
         if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
 
@@ -23,6 +24,7 @@
 
             $_SESSION['success'] = false;   // po wyświetleniu komunikatu o pomyślnym ukończeniu akcji nie chcemy wyświetlać jej ponownie
             unset($akcja);  // zabezpieczenie, aby przypadkiem nie wyświetlił się komunikat gdy nie wykonano żadnej akcji
+
         }
 
         // Funkcja ListaProduktów() zwraca listę zawierającą produkty pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php,
@@ -74,7 +76,7 @@
 
         }
 
-        if (isset($_GET['add'])) {  // jeżeli chcemy wykonać dodawanie produktu - ustawiona jest zmienna 'add' w linku - wykonuje się ta część kodu
+        function DodajProdukt() {
             require(dirname(__DIR__, 1). '/cfg.php');
 
             $id = $_GET['add'];
@@ -131,7 +133,6 @@
                 $size = $_POST['size'];
                 $picture = $_POST['base64_img'];
 
-                // $query = "INSERT INTO product_list (master, name) VALUES (:master, :category_name)";
                 $query = "INSERT INTO product_list (product_name, product_description, creation_date, modification_date, expiration_date, net_price, vat, quanity, availability, category_id, size, picture) VALUES (:product_name, :product_description, :creation_date, :modification_date, :expiration_date, :net_price, :vat, :quanity, :availability, :category_id, :size, :picture)";
                 $sth = $dbh->prepare($query);
                 $sth->bindValue(':product_name', $product_name);
@@ -157,8 +158,7 @@
             }
         }
 
-        if (isset($_GET['edit'])) { // jeżeli chcemy wykonać edycję podstrony - ustawiona jest zmienna 'edit' w linku - wykonuje się ta część kodu
-
+        function EdytujProdukt() {
             require(dirname(__DIR__, 1). '/cfg.php');
 
             $id = $_GET['edit'];
@@ -275,7 +275,7 @@
             }
         }
 
-        if (isset($_GET['details'])) {
+        function PokazProdukt() {
             require(dirname(__DIR__, 1) . '/cfg.php');
             $id = $_GET['details'];
             $query = "SELECT * FROM product_list WHERE id=:id LIMIT 1";
@@ -337,7 +337,7 @@
             }
         }
 
-        if (isset($_GET['del'])) { // jeżeli chcemy usunąć podstronę - ustawiona jest zmienna 'del' w linku - wykonuje się ta część kodu
+        function UsunProdukt() {
             require(dirname(__DIR__, 1) . '/cfg.php');
             $id = $_GET['del'];
 
@@ -402,8 +402,6 @@
 
             }
 
-
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $query = "DELETE FROM product_list WHERE id=:id LIMIT 1";
@@ -418,8 +416,25 @@
             }
         }
 
+        if (isset($_GET['add'])) {  // jeżeli chcemy wykonać dodawanie produktu - ustawiona jest zmienna 'add' w linku - wykonuje się ta część kodu
+            DodajProdukt();
+        }
+
+        if (isset($_GET['edit'])) { // jeżeli chcemy wykonać edycję podstrony - ustawiona jest zmienna 'edit' w linku - wykonuje się ta część kodu
+            EdytujProdukt();
+        }
+
+        if (isset($_GET['details'])) {
+            PokazProdukt();
+        }
+
+        if (isset($_GET['del'])) { // jeżeli chcemy usunąć podstronę - ustawiona jest zmienna 'del' w linku - wykonuje się ta część kodu
+            UsunProdukt();
+        }
+
         if (!(isset($_GET['add']) || isset($_GET['edit']) || isset($_GET['del']) || isset($_GET['details'])))  // produkty wyświetlą się tylko jeżeli nie będziemy w podstronie "edytującej" dany przedmiot.
             ListaProduktów();    // wyświetlanie produktów funkcją
+
     }
 
     else {  // wykonuje się, gdy osoba nie ma dostępu do panelu CMS
