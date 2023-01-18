@@ -1,11 +1,11 @@
 <?php
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL); 
+    error_reporting(E_ALL);
 
-    // Funkcja FormularzRejestracji() wyświetla formularz rejestracji nowego użytkownika, 
-    // który do zmiennych $_POST['register_email'] oraz $_POST['register_pass'] zapisuje e-mail oraz hasło wprowadzone przez użytkownika 
-    // do weryfikacji i przesłania do bazy danych. 
+    // Funkcja FormularzRejestracji() wyświetla formularz rejestracji nowego użytkownika,
+    // który do zmiennych $_POST['register_email'] oraz $_POST['register_pass'] zapisuje e-mail oraz hasło wprowadzone przez użytkownika
+    // do weryfikacji i przesłania do bazy danych.
 
     function FormularzRejestracji() {
         $register_form = '

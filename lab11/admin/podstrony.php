@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {   // weryfikacja, czy użytkownik jest zalogowany, aby mieć dostęp do CMS
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true && $_SESSION['logged'] === true) {   // weryfikacja, czy użytkownik jest administratorem i jest zalogowany, aby mieć dostęp do CMS
 
         function PomyslnaAkcja() {
             if ($_SESSION['action'] == 'add')
@@ -29,7 +29,7 @@
             PomyslnaAkcja();
         }
 
-        // Funkcja ListaPodstron() zwraca listę zawierającą podstrony pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php, 
+        // Funkcja ListaPodstron() zwraca listę zawierającą podstrony pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php,
         // następnie wykonuje kwerendę do bazy aby dostać z powrotem podstrony do zmiennej $result.
         // Kolejno za pomocą polecenia echo wyświetlam div'a z podstronami.
 

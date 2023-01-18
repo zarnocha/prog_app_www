@@ -4,9 +4,9 @@
     error_reporting(E_ALL);
     date_default_timezone_set("Europe/Warsaw");
 
-    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true) {   // weryfikacja, czy użytkownik jest zalogowany, aby mieć dostęp do CMS
-        if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
+    if (isset($_SESSION['auth']) && $_SESSION['auth'] === true && $_SESSION['logged'] === true) {   // weryfikacja, czy użytkownik jest administratorem i jest zalogowany, aby mieć dostęp do CMS
 
+        function PomyslnaAkcja() {
             if ($_SESSION['action'] == 'add')
                 $akcja = 'Dodawanie';
             elseif ($_SESSION['action'] == 'edit')
@@ -24,7 +24,10 @@
 
             $_SESSION['success'] = false;   // po wyświetleniu komunikatu o pomyślnym ukończeniu akcji nie chcemy wyświetlać jej ponownie
             unset($akcja);  // zabezpieczenie, aby przypadkiem nie wyświetlił się komunikat gdy nie wykonano żadnej akcji
+        }
 
+        if ($_SESSION['success'] === true) {    // wyświetlanie komunikatu, jeżeli dana akcja zakończyła się sukcesem
+            PomyslnaAkcja();
         }
 
         // Funkcja ListaProduktów() zwraca listę zawierającą produkty pobrane z bazy danych. Pobiera ona konfigurację połączenia z pliku cfg.php,
