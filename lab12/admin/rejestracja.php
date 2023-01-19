@@ -22,8 +22,8 @@
                     <td class="labele"><label for="register_pass">Twoje hasło:</label></td><td><input id="register_pass" type="password" name="register_pass" class="logowanie"></td>
                 </tr>
                 <tr class="przyciski_logowanie">
-                    <td><input type="submit" name="x1_submit" class="logowanie" value="Zarejestruj"></td>
                     <td><button><a class="logowanie" href="?idp=login">Przejdź do panelu logowania</a></button></td>
+                    <td><input type="submit" name="x1_submit" class="logowanie" value="Zarejestruj"></td>
                 </tr>
             </table>
             </form>

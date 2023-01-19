@@ -31,9 +31,9 @@
                 <tr><td class="labele"><label for="login_email">E-mail:</label></td><td><input id="login_email" type="text" name="login_email" class="logowanie" /></td></tr>
                 <tr><td class="labele"><label for="login_pass">Hasło:</label></td><td><input id="login_pass" type="password" name="login_pass" class="logowanie" /></td></tr>
                 <tr class="przyciski_logowanie">
-                <td><input type="submit" name="przywroc_haslo" formaction="?idp=przypomnij_haslo" class="logowanie" value="Przypomnij hasło"></td>
-                <td><input type="submit" name="x1_submit" formaction="admin/login.php" class="logowanie" value="Zaloguj"></td>
-                <td><input type="submit" name="zarejestruj" action="?idp=register" formaction="?idp=register" class="logowanie" value="Zarejestruj się"></td>
+                    <td><button type="button" name="przywroc_haslo" onclick="location.href=\'?idp=przypomnij_haslo\'" class="logowanie">Przypomnij hasło</button></td>
+                    <td><input type="submit" name="x1_submit" formaction="admin/login.php" class="logowanie" value="Zaloguj"></td>
+                    <td><button type="button" name="zarejestruj" onclick="location.href=\'?idp=register\'" class="logowanie">Zarejestruj się</button></td>
                 </tr>
             </table>
             </form>

@@ -100,11 +100,21 @@
 						}
 
 						elseif ($_GET['idp'] == 'sklep' && !(isset($_GET['koszyk'])) && !(isset($_GET['details']))) {
-							$czyZalogowany = '<a href="?idp=sklep&koszyk">Koszyk</a></br>';
+							if (isset($_SESSION['laczna_ilosc'])) {
+								$czyZalogowany = '<a href="?idp=sklep&koszyk">Koszyk: '. $_SESSION['laczna_ilosc'] . ' szt. ('. $_SESSION['laczna_cena_brutto'] . ' zł)</a></br>';
+							}
+							else {
+								$czyZalogowany = '<a href="?idp=sklep&koszyk">Koszyk</a></br>';
+							}
 						}
 
 						else {
-							$czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk</a></br>';
+							if (isset($_SESSION['laczna_ilosc'])) {
+								$czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk: '. $_SESSION['laczna_ilosc'] . ' szt. ('. $_SESSION['laczna_cena_brutto'] . ' zł)</a></br>';
+							}
+							else {
+								$czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk</a></br>';
+							}
 						}
 
 						// $czyZalogowany = '<a href="?idp=sklep">Sklep</a></br><a href="?idp=sklep&koszyk">Koszyk</a></br>';
@@ -119,8 +129,8 @@
 						else {
 							$czyZalogowany =  $czyZalogowany . '<a onMouseOver=this.style.color="rgb(255,20,60)" onMouseOut=this.style.color="rgb(255,255,255)" href="?idp=wyloguj" >Wyloguj się';	// wyświetlamy tylko przycisk od wylogowywania się
 						}
-
 					}
+
 				}
 				else
 					$czyZalogowany = '<a href="?idp=login">Zaloguj się'; // jeżeli użytkownik nie jest zalogowany to dajemu mu możliwość zalogowania się przez przekierowanie do podstrony z formularzem logowania

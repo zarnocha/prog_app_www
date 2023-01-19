@@ -140,7 +140,9 @@
             }
 
         }
+        PodsumowanieKoszyka();
         unset($_SERVER['REQUEST_METHOD']);
+        header('Refresh: 0');
     }
 
     function UsunZKoszyka() {
@@ -164,8 +166,9 @@
                 $_SESSION[$id . "_4"] = $_SESSION[$id . "_4"] - ($_SESSION[$id . "_3"] * $ilosc_odejmowana);
             }
         }
-
+        PodsumowanieKoszyka();
         unset($_SERVER['REQUEST_METHOD']);
+        header('Refresh: 0');
     }
 
     function PokazProduktZeSklepu () {
@@ -181,7 +184,10 @@
             echo ("
                 <link rel='stylesheet' href='css/sklep.css'><script src='js/availability.js'></script>
                 <div class='strony' style='width:90%;'>
-                <a href='?idp=sklep' id='dodaj' style='font-size:2vw; margin-bottom:10%;'>Powróć do sklepu</a>
+                <div id='alert' style='justify-content:space-evenly;'>
+                    <a href='?idp=sklep' id='dodaj' style='font-size:2vw;'>Powróć do sklepu</a>
+                    <a href='?idp=sklep&koszyk' id='dodaj' style='font-size:2vw;'>Przejdź do koszyka</a>
+                </div>
                 <p id='dodaj' style='font-size:1.6vw;'><b>Szczegóły</b> produktu</p>
                 <div class='tlo'>
                 <div style='display: flex; flex-direction: column; align-items: stretch;'>
@@ -301,8 +307,8 @@
                 <p style="font-size:3vw;"><b>Koszyk</b></p>
                 <hr style="width:40vw;">
                 <div id="alert" style="justify-content:space-evenly;">
-                <a href="?idp=sklep" id="dodaj" style="font-size:1.6vw; margin-top:2%; margin-bottom:2%;">Wróc do sklepu</a>
-                <a href="koszyk_wyczysc.php" onclick="return confirm(\'Czy chcesz na pewno wszystkie przedmioty z koszyka?\')" id="usun_wszystko" style="font-size:1.6vw; margin-top:2%; margin-bottom:2%;">Usuń wszystko</a>
+                    <a href="?idp=sklep" id="dodaj" style="font-size:1.6vw; margin-top:2%; margin-bottom:2%;">Wróc do sklepu</a>
+                    <a href="koszyk_wyczysc.php" onclick="return confirm(\'Czy chcesz na pewno wszystkie przedmioty z koszyka?\')" id="usun_wszystko" style="font-size:1.6vw; margin-top:2%; margin-bottom:2%;">Usuń wszystko</a>
                 </div>
                 <hr style="width:40vw;">
                 <div style="display: flex;flex-direction: row;justify-content: center;align-content: center;flex-wrap: wrap;">
