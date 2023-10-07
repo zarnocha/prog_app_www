@@ -164,7 +164,7 @@
                 <label for='category_name' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Nazwa kategorii</label><input type='text' name='category_name' id='category_name' placeholder='Nazwa kategorii'>
                 <label for='master' style='padding-top:2%; padding-bottom:1%; font-size:1.3vw;'>Kategoria-matka</label><input type='text' name='master' id='master' placeholder='Zostaw puste, jeżeli to kategoria główna'>
                 <div id='przyciski'>
-                <button id='przycisk' type='submit' formaction=\"?idp=panel_cms&podstrony\" onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button>
+                <button id='przycisk' type='submit' formaction=\"?idp=panel_cms&kategorie\" onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\">Wróć</button>
                 <button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button>
                 <br>
                 </div>

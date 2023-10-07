@@ -61,8 +61,8 @@
 
     if (isset($_POST["send"])) {    // jeżeli w formularzu kontaktowym zatwierdzimy wysłanie maila - wykona się ta funkcja - wyśle maila ze strony na progappwwwmailer@gmail.com
         WyslijMailKontakt($_POST["email"], $_POST["name"], 'progappwwwmailer@gmail.com', $_POST["subject"], $_POST["message"]);
-        // header('Location: ./index.php?idp=kontakt');
-        echo "<script> window.location.href='?idp=kontakt';</script>";
+        header('Location: ./index.php?idp=kontakt');
+        // echo "<script> window.location.href='?idp=kontakt';</script>";
 
     }
 

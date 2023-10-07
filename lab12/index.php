@@ -9,6 +9,9 @@
 
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
+	include('nawigacja.php');
+	$nawigacjaQuery = nawigacjaQuery();
+
 	if ($_GET['idp'] == 'kontakt') {	// jeżeli w zmiennej idp będzie "kontakt", to wyświetlamy podstronę "kontakt" z pliku contact.php
 		require('contact.php');
 		session_start();
@@ -150,13 +153,22 @@
 	</div>
 
 	<div class="tab_holder">
-		<a href="?idp=" class="tab"> <b>Strona główna</b> </a>
+		<!-- <a href="?idp=" class="tab"> <b>Strona główna</b> </a>
 		<a href="?idp=stroje" class="tab"> <b>Stroje piłkarskie</b> </a>
 		<a href="?idp=obuwie" class="tab"> <b>Obuwie piłkarskie (korki)</b> </a>
 		<a href="?idp=rekawice" class="tab"> <b>Rękawice bramkarskie</b> </a>
 		<a href="?idp=pilki" class="tab"> <b>Piłki</b> </a>
 		<a href="?idp=filmy" class="tab"> <b>Filmy</b> </a>
-		<a href="?idp=kontakt" class="tab"> <b>Kontakt</b> </a>
+		<a href="?idp=kontakt" class="tab"> <b>Kontakt</b> </a> -->
+		<?php foreach ($nawigacjaQuery as $row) : ?>
+      
+            <a href="?idp=<?php echo $row['alias']; ?>" class="tab">
+                <b><?php echo $row['page_title']; ?></b>
+            </a>
+     
+    	<?php endforeach; ?>
+
+
 	</div>
 
 

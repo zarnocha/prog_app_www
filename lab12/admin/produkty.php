@@ -125,7 +125,7 @@
 
             echo ("<script src='js/image_to_b64.js'></script>");
             // echo '<p id="b64" style="display:none;"></p>';
-            echo("<center><img id='img'></center><input style='display:none;' type='text' id='b64' name='base64_img' /> <div id='przyciski'><button id='przycisk' type='submit' formaction='?idp=panel_cms&podstrony' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\")>Wróć</button><button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button><br></div></form></div></div>'");
+            echo("<center><img id='img'></center><input style='display:none;' type='text' id='b64' name='base64_img' /> <div id='przyciski'><button id='przycisk' type='submit' formaction='?idp=panel_cms&produkty' onMouseOver=\"this.style.fontWeight='bold'\" onMouseOut=\"this.style.fontWeight='normal'\")>Wróć</button><button id='przycisk' type='submit' name='save' onMouseOver=\"this.style.color='rgb(0,165,0)'; this.style.fontWeight='bold'\" onMouseOut=\"this.style.color='rgb(0,0,0)'; this.style.fontWeight='normal'\")>Dodaj</button><br></div></form></div></div>'");
 
 
 
